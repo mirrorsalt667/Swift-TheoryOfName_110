@@ -12,7 +12,8 @@ class WaterMovingViewController: UIViewController {
     let path = UIBezierPath()
     let shape = CAShapeLayer()
     var birthday = ""
-    var age = ""
+    var name = ""
+    var tailNum = 0
     
     
     @IBOutlet weak var backFontButton: UIButton!
@@ -39,12 +40,22 @@ class WaterMovingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let ageAndPercent = nowAgeAndPercent(birth: birthday)
+        let age = ageAndPercent[0]
+        print(ageAndPercent)
+        
         drawATen()
-        position()
+        position(agePercent: ageAndPercent)
         codingLayout()
-        labelShow()
+        labelShow(age: age)
         
     }
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     func drawATen() {
         let width = self.view.frame.size.width
@@ -66,34 +77,44 @@ class WaterMovingViewController: UIViewController {
         
         shape.path = path.cgPath
         self.view.layer.addSublayer(shape)
-        
-        
-        
-        
+    }
+    
+    func drawCircle(Degree: CGFloat) {
+        let width = self.view.frame.size.width
+        let lineWidth = CGFloat(width - 180)
+        let heightFromTop = CGFloat(250)
         let aDegree = CGFloat.pi/180
-        let circlePath = UIBezierPath(ovalIn: CGRect(x: width/2, y: heightFromTop+lineWidth/2, width: lineWidth, height: lineWidth))
-        let circle = UIBezierPath(arcCenter: CGPoint(x: width/2, y: heightFromTop+lineWidth/2), radius: lineWidth/2, startAngle: 0, endAngle: aDegree*(90+360*0.5), clockwise: true)
+
+        let degreePlus = Degree + CGFloat(3)
+        let circle = UIBezierPath(arcCenter: CGPoint(x: width/2, y: heightFromTop+lineWidth/2), radius: lineWidth/2, startAngle: aDegree*Degree, endAngle: aDegree*degreePlus, clockwise: true)
         
         
         let circelLayer = CAShapeLayer()
         circelLayer.path = circle.cgPath
         circelLayer.lineWidth = 3
-        circelLayer.fillColor = UIColor.clear.cgColor
+        circelLayer.fillColor = UIColor.blue.cgColor
         circelLayer.strokeColor = UIColor.darkGray.cgColor
+        circelLayer.lineCap = .round
         
         self.view.layer.addSublayer(circelLayer)
     }
     
-    func position() {
+    func position(agePercent: [Int]) {
+        
+        var nowDegree:CGFloat = 0
+        
         let width = self.view.frame.size.width
 //        let height = self.view.frame.size.height
         let toTheSide = CGFloat(90)
-        let lineWidth = CGFloat(width - toTheSide * 2)
+        let lineWidth = CGFloat(width - toTheSide*2)
         let heightFromTop = CGFloat(250)
 //        let margins = titleLabel.superview!.layoutMarginsGuide
         let betweenH = CGFloat(30)
 //        let betweenV = CGFloat(50)
         
+        let oneWordWidth = CGFloat(50)
+        let twoWordWidth = CGFloat(70)
+        let labelHeight = CGFloat(25)
         
         func setLabel(_ label: UILabel, point: CGPoint) -> CGRect {
             
@@ -108,50 +129,130 @@ class WaterMovingViewController: UIViewController {
             
             return returnRect
         }
-        let ageTail = 0
-        func ageTailCalculate(age: Int) -> Int{
-             return age%10
+
+        let ageTail = agePercent[0]%10
+        
+        func rangeOfAgeTail(ageTail: Int) -> Int {
+            var ageNum = ageTail
+            if ageNum > 9 {
+                ageNum -= 10
+                return ageNum
+            }
+            return ageNum
         }
-        beginingLabel.text = "胎 \(ageTailCalculate(age: ageTail))歲"
-        beginingLabel.frame.size = CGSize(width: 75, height: 25)
+//        let ageTail = ageTailCalculateReduceThree(age: age)
+        print("姓名的尾數\(tailNum)")
+        beginingLabel.text = "胎 (\(rangeOfAgeTail(ageTail: tailNum)))"
+        beginingLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
         beginingLabel.frame = setLabel(beginingLabel, point: CGPoint(x: width/2, y: heightFromTop+lineWidth+betweenH))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum) {
+            beginingLabel.textColor = UIColor.orange
+            //degree -> 90-120
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(90) + CGFloat(degreeInt)
+        }
         
-        let twoOfBetween = lineWidth/2/3
-        secLabel.text = "養 \(ageTailCalculate(age: ageTail+1))歲"
-        secLabel.frame.size = CGSize(width: 75, height: 25)
-        secLabel.frame = setLabel(secLabel, point: CGPoint(x: toTheSide + 10, y: heightFromTop+lineWidth-twoOfBetween))
+//        let twoOfBetween = lineWidth/2/3
+        secLabel.text = "養 (\(rangeOfAgeTail(ageTail: tailNum+1)))"
+        secLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
+        secLabel.frame = setLabel(secLabel, point: CGPoint(x: toTheSide+lineWidth/10, y: heightFromTop+lineWidth))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+1) {
+            secLabel.textColor = UIColor.orange
+            //degree -> 120-150
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(120) + CGFloat(degreeInt)
+        }
         
-        thirdLabel.text = "長生 \(ageTailCalculate(age: ageTail+2))歲"
-        thirdLabel.frame.size = CGSize(width: 90, height: 25)
-        thirdLabel.frame = setLabel(thirdLabel, point: CGPoint(x: toTheSide, y: heightFromTop+lineWidth-2*twoOfBetween))
+        thirdLabel.text = "長生 (\(rangeOfAgeTail(ageTail: tailNum+2)))"
+        thirdLabel.frame.size = CGSize(width: twoWordWidth, height: labelHeight)
+        thirdLabel.frame = setLabel(thirdLabel, point: CGPoint(x: toTheSide-lineWidth/10, y: heightFromTop+lineWidth/4*3))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+2) {
+            thirdLabel.textColor = UIColor.orange
+            //degree -> 150-180
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(150) + CGFloat(degreeInt)
+        }
         
-        fourthLabel.text = "冠帶 \(ageTailCalculate(age: ageTail+3))歲"
-        fourthLabel.frame.size = CGSize(width: 90, height: 25)
-        fourthLabel.frame = setLabel(fourthLabel, point: CGPoint(x: toTheSide-35, y: heightFromTop+lineWidth/2))
+        fourthLabel.text = "冠帶 (\(rangeOfAgeTail(ageTail: tailNum+3)))"
+        fourthLabel.frame.size = CGSize(width: twoWordWidth, height: labelHeight)
+        fourthLabel.frame = setLabel(fourthLabel, point: CGPoint(x: toTheSide-betweenH, y: heightFromTop+lineWidth/2))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+3) {
+            fourthLabel.textColor = UIColor.orange
+            //degree -> 180-225
+            let degreeInt = 45 * agePercent[1] / 100
+            nowDegree = CGFloat(180) + CGFloat(degreeInt)
+        }
         
-        fivethLabel.text = "臨冠 \(ageTailCalculate(age: ageTail+4))歲"
-        fivethLabel.frame.size = CGSize(width: 90, height: 25)
-        fivethLabel.frame = setLabel(fivethLabel, point: CGPoint(x: toTheSide, y: heightFromTop+lineWidth/4))
+        fivethLabel.text = "臨冠 (\(rangeOfAgeTail(ageTail: tailNum+4)))"
+        fivethLabel.frame.size = CGSize(width: twoWordWidth, height: labelHeight)
+        fivethLabel.frame = setLabel(fivethLabel, point: CGPoint(x: toTheSide-betweenH/3, y: heightFromTop+lineWidth/16))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+4) {
+            fivethLabel.textColor = UIColor.orange
+            //degree -> 225-270
+            let degreeInt = 45 * agePercent[1] / 100
+            nowDegree = CGFloat(225) + CGFloat(degreeInt)
+        }
 
-        sixthLabel.text = "帝旺 \(ageTailCalculate(age: ageTail+5))歲"
-        sixthLabel.frame.size = CGSize(width: 90, height: 25)
-        sixthLabel.frame = setLabel(sixthLabel, point: CGPoint(x: width/2, y: heightFromTop-20))
+        sixthLabel.text = "帝旺 (\(rangeOfAgeTail(ageTail: tailNum+5)))"
+        sixthLabel.frame.size = CGSize(width: twoWordWidth, height: labelHeight)
+        sixthLabel.frame = setLabel(sixthLabel, point: CGPoint(x: width/2, y: heightFromTop-betweenH))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+5) {
+            sixthLabel.textColor = UIColor.orange
+            //degree -> 270-300
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(270) + CGFloat(degreeInt)
+        }
 
-        seventhLabel.text = "衰 \(ageTailCalculate(age: ageTail+6))歲"
-        seventhLabel.frame.size = CGSize(width: 75, height: 25)
-        seventhLabel.frame = setLabel(seventhLabel, point: CGPoint(x: width-toTheSide, y: heightFromTop+lineWidth/6))
+        seventhLabel.text = "衰 (\(rangeOfAgeTail(ageTail: tailNum+6)))"
+        seventhLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
+        seventhLabel.frame = setLabel(seventhLabel, point: CGPoint(x: toTheSide+lineWidth-lineWidth/12, y: heightFromTop))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+6) {
+            seventhLabel.textColor = UIColor.orange
+            //degree -> 300-330
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(300) + CGFloat(degreeInt)
+        }
 
-        eighthLabel.text = "病 \(ageTailCalculate(age: ageTail+7))歲"
-        eighthLabel.frame.size = CGSize(width: 75, height: 25)
-        eighthLabel.frame = setLabel(eighthLabel, point: CGPoint(x: width-toTheSide/3*2, y: heightFromTop+lineWidth/3))
+        eighthLabel.text = "病 (\(rangeOfAgeTail(ageTail: tailNum+7)))"
+        eighthLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
+        eighthLabel.frame = setLabel(eighthLabel, point: CGPoint(x: width-toTheSide/3*2, y: heightFromTop+lineWidth/4))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+7) {
+            eighthLabel.textColor = UIColor.orange
+            //degree -> 330-30
+            var degreeInt = 60 * agePercent[1] / 100
+            switch degreeInt > 30 {
+            case true:
+                degreeInt -= 30
+                nowDegree = CGFloat(degreeInt)
+            default:
+                nowDegree = CGFloat(330) + CGFloat(degreeInt)
+            }
+        }
 
-        ninethLabel.text = "死 \(ageTailCalculate(age: ageTail+8))歲"
-        ninethLabel.frame.size = CGSize(width: 75, height: 25)
-        ninethLabel.frame = setLabel(ninethLabel, point: CGPoint(x: width-toTheSide/3*2, y: heightFromTop+lineWidth/3*2))
+        ninethLabel.text = "死 (\(rangeOfAgeTail(ageTail: tailNum+8)))"
+        ninethLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
+        ninethLabel.frame = setLabel(ninethLabel, point: CGPoint(x: width-toTheSide/3*2, y: heightFromTop+lineWidth/4*3))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+8) {
+            ninethLabel.textColor = UIColor.orange
+            //degree -> 30-60
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(30) + CGFloat(degreeInt)
+        }
 
-        tenthLabel.text = "絕 \(ageTailCalculate(age: ageTail+9))歲"
-        tenthLabel.frame.size = CGSize(width: 75, height: 25)
-        tenthLabel.frame = setLabel(tenthLabel, point: CGPoint(x: width-toTheSide, y: heightFromTop+lineWidth/6*5))
+        tenthLabel.font = UIFont.systemFont(ofSize: 18)
+        tenthLabel.text = "絕 (\(rangeOfAgeTail(ageTail: tailNum+9)))"
+        tenthLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
+        tenthLabel.frame = setLabel(tenthLabel, point: CGPoint(x: toTheSide+lineWidth-lineWidth/12, y: heightFromTop+lineWidth))
+        if ageTail == rangeOfAgeTail(ageTail: tailNum+9) {
+            tenthLabel.textColor = UIColor.orange
+            //degree -> 60-90
+            let degreeInt = 30 * agePercent[1] / 100
+            nowDegree = CGFloat(60) + CGFloat(degreeInt)
+        }
+        
+        
+        drawCircle(Degree: nowDegree)
+        
         
     }
     
@@ -187,7 +288,12 @@ class WaterMovingViewController: UIViewController {
         bottomTextView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -30).isActive = true
     }
     
-    func labelShow() {
+    func labelShow(age: Int) {
+        
+        titleLabel.text = "\(name) 流年 資料"
+        
+        birthdayLabel.text = "生日：\(birthday)"
+        ageLabel.text = "虛歲：\(age)"
         
     }
 }

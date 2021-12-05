@@ -9,9 +9,11 @@ import UIKit
 
 class NameNumViewController: UIViewController {
 
+    let style = itemStyle()
     var firstName = ""
     var lastName = ""
     var birthdate = ""
+    var tailNum = 0
     var arrays = [NameJson]()
     
     @IBOutlet weak var birthdateLabel: UILabel!
@@ -50,8 +52,10 @@ class NameNumViewController: UIViewController {
         
         sizeAndPosition()
         arrays = getData()
+        
         DispatchQueue.main.async {
             self.calcuate()
+            self.outlook()
         }
     }
     
@@ -59,20 +63,30 @@ class NameNumViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func waterMovingButton(_ sender: Any) {
+        
+        performSegue(withIdentifier: "ToWaterMovingSegue", sender: nil)
+    }
+    
+    
     func sizeAndPosition() {
         let width = self.view.frame.width
-        let height = self.view.frame.height
+//        let height = self.view.frame.height
         let margins = birthdateLabel.superview!.layoutMarginsGuide
 //        let tenOneHeight = height/4
-        let threeOneWidth = width/2
+        let twoOneWidth = width/2
         
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         birthdateLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdateLabel.topAnchor.constraint(equalTo: backFontButton.bottomAnchor, constant: 15).isActive = true
@@ -167,16 +181,43 @@ class NameNumViewController: UIViewController {
         totalFive_eleLabel.centerYAnchor.constraint(equalTo: totalNumLabel.centerYAnchor).isActive = true
         
         workOnButton.translatesAutoresizingMaskIntoConstraints = false
-        workOnButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -threeOneWidth/2).isActive = true
+        workOnButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -twoOneWidth/2).isActive = true
         workOnButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
+        workOnButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        workOnButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
         
         waterMoveButton.translatesAutoresizingMaskIntoConstraints = false
         waterMoveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         waterMoveButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
+        waterMoveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        waterMoveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
         
         personalityButton.translatesAutoresizingMaskIntoConstraints = false
-        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: threeOneWidth/2).isActive = true
+        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: twoOneWidth/2).isActive = true
         personalityButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
+        personalityButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        personalityButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+
+    }
+    func outlook() {
+        self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
+        style.topButton(backFontButton, title: "首頁")
+        style.topButton(backButton, title: "返回")
+        birthdateLabel.textColor = UIColor.black
+        birthdateLabel.font = UIFont.systemFont(ofSize: 18)
+        func nameNumStyle(label: UILabel) {
+            label.textColor = itemStyle.color.init().wordColor
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 20)
+        }
+        nameNumStyle(label: firstNameNumLabel)
+        nameNumStyle(label: secNameNumLabel)
+        nameNumStyle(label: thirdNameNumLabel)
+        nameNumStyle(label: fourNameNumLabel)
+        
+        style.brownButton(workOnButton, title: "發動")
+        style.brownButton(waterMoveButton, title: "流年")
+        style.brownButton(personalityButton, title: "性格")
     }
     
     func calcuate() {
@@ -213,16 +254,25 @@ class NameNumViewController: UIViewController {
         let upText = whatArrow(first: fiveArrays[1], last: fiveArrays[2])
         let downText = whatArrow(first: fiveArrays[2], last: fiveArrays[3])
         
+        //取尾數 減掉３
+        tailNum = totalNum%10
+        tailNum -= 3
+        if tailNum < 0 {
+            tailNum += 10
+        }
         
         
-        
-        firstNameLabel.text = nameArrays[0].word
+//        firstNameLabel.text = nameArrays[0].word
+        showBigOLabel(label: firstNameLabel, show: nameArrays[0].word)
         firstNameNumLabel.text = String(firstNum)
-        secNameLabel.text = nameArrays[1].word
+//        secNameLabel.text = nameArrays[1].word
+        showBigOLabel(label: secNameLabel, show: nameArrays[1].word)
         secNameNumLabel.text = String(secNum)
-        thirdNameLabel.text = nameArrays[2].word
+//        thirdNameLabel.text = nameArrays[2].word
+        showBigOLabel(label: thirdNameLabel, show: nameArrays[2].word)
         thirdNameNumLabel.text = String(thirdNum)
-        fourNameLabel.text = nameArrays[3].word
+//        fourNameLabel.text = nameArrays[3].word
+        showBigOLabel(label: fourNameLabel, show: nameArrays[3].word)
         fourNameNumLabel.text = String(fourthNum)
         movingNumLabel.text = String(movingNum)
         movingFive_eleLabel.text = fiveArrays[0]
@@ -235,11 +285,50 @@ class NameNumViewController: UIViewController {
         totalNumLabel.text = String(totalNum)
         totalFive_eleLabel.text = fiveArrays[4]
         upBetweenLabel.text = upText
+        if upText == "▽" || upText == "△" {
+            upBetweenLabel.textColor = UIColor.red
+        }else if upText == "||" {
+            upBetweenLabel.textColor = itemStyle.color.init().wordColor
+        }else{
+            upBetweenLabel.textColor = UIColor.black
+        }
         downBetweenLabel.text = downText
-        
+        if downText == "▽" || downText == "△" {
+            downBetweenLabel.textColor = UIColor.red
+        }else if downText == "||" {
+            downBetweenLabel.textColor = itemStyle.color.init().wordColor
+        }else{
+            downBetweenLabel.textColor = UIColor.black
+        }
         birthdateLabel.text = "出生日期：" + birthdate
-        
     }
+    func showBigOLabel(label: UILabel, show: String) {
+        label.text = show
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 60)
+        if show == "Ｏ"{
+            label.textColor = UIColor.gray
+        }else{
+            label.textColor = itemStyle.color.init().dark_green
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ToWaterMovingSegue":
+            if let controller = segue.destination as? WaterMovingViewController {
+                
+                controller.name = "\(self.lastName)\(self.firstName)"
+                controller.birthday = self.birthdate
+                controller.tailNum = self.tailNum
+                print("傳送的資料\(controller.name), \(controller.birthday), \(controller.tailNum)")
+                
+            }
+        default: break
+            
+        }
+    }
+    
     
     
 }

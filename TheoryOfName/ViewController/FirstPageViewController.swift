@@ -22,6 +22,7 @@ class FirstPageViewController: UIViewController {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     
+    @IBOutlet weak var backgroundIV: UIImageView!
     
     
     
@@ -78,12 +79,22 @@ class FirstPageViewController: UIViewController {
         aboutButton.translatesAutoresizingMaskIntoConstraints = false
         aboutButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
         aboutButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        
+        backgroundIV.translatesAutoresizingMaskIntoConstraints = false
+        backgroundIV.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        backgroundIV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        backgroundIV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        backgroundIV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
     }
     
     func outlookAndShow() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
+        backgroundIV.image = UIImage(named: "background_name.png")
+        backgroundIV.contentMode = .scaleAspectFill
+        
         titleLabel.textColor = itemStyle.color.init().wordColor
         titleLabel.font = UIFont.systemFont(ofSize: 28)
+        titleLabel.text = "姓名學的日常應用"
         style.firstPageButton(selfButton, setTitle: "本 身 資 料")
         style.firstPageButton(newButton, setTitle: "新 資 料")
         style.firstPageButton(recordButton, setTitle: "查 詢 紀 錄")

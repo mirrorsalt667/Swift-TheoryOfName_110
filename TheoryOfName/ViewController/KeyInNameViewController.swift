@@ -34,6 +34,8 @@ class KeyInNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameTF.delegate = self
+        firstNameTF.delegate = self
         
         sizeAndPosition()
         outlookShowing()
@@ -72,15 +74,19 @@ class KeyInNameViewController: UIViewController {
         let height = self.view.frame.height
         let margins = titleLabel.superview!.layoutMarginsGuide
         let fiveOneHeight = height/7
-        let sevenOneWidth = width/7
+//        let sevenOneWidth = width/7
         
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         
 //        birthdatePicker.preferredDatePickerStyle = .inline
         birthdatePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -91,24 +97,30 @@ class KeyInNameViewController: UIViewController {
         
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         confirmButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        confirmButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+//        confirmButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
+//        confirmButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+//        confirmButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        confirmButton.topAnchor.constraint(equalTo: margins.bottomAnchor, constant: -50).isActive = true
+        confirmButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        confirmButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        confirmButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         birthdayTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdayTitleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         birthdayTitleLabel.bottomAnchor.constraint(equalTo: birthdatePicker.topAnchor, constant: -10).isActive = true
         
         nameTF.translatesAutoresizingMaskIntoConstraints = false
-        nameTF.widthAnchor.constraint(equalToConstant: width/7*2).isActive = true
+        nameTF.widthAnchor.constraint(equalToConstant: width/8*3).isActive = true
         nameTF.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        nameTF.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: sevenOneWidth).isActive = true
-        nameTF.trailingAnchor.constraint(equalTo: firstNameTF.leadingAnchor, constant: -sevenOneWidth).isActive = true
+        nameTF.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: width/12).isActive = true
+        nameTF.trailingAnchor.constraint(equalTo: firstNameTF.leadingAnchor, constant: -width/12).isActive = true
         nameTF.bottomAnchor.constraint(equalTo: birthdayTitleLabel.topAnchor, constant: -50).isActive = true
         
         firstNameTF.translatesAutoresizingMaskIntoConstraints = false
-        firstNameTF.widthAnchor.constraint(equalToConstant: width/7*2).isActive = true
+        firstNameTF.widthAnchor.constraint(equalToConstant: width/8*3).isActive = true
         firstNameTF.heightAnchor.constraint(equalToConstant: 45).isActive = true
         firstNameTF.centerYAnchor.constraint(equalTo: nameTF.centerYAnchor).isActive = true
-        
+
         nameTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         nameTitleLabel.centerXAnchor.constraint(equalTo: nameTF.centerXAnchor).isActive = true
         nameTitleLabel.bottomAnchor.constraint(equalTo: nameTF.topAnchor, constant: -10).isActive = true
@@ -126,13 +138,26 @@ class KeyInNameViewController: UIViewController {
     func outlookShowing() {
         let now = Date()
         birthdatePicker.maximumDate = now
+        birthdatePicker.tintColor = itemStyle.color.init().dove_gray
+        birthdatePicker.backgroundColor = itemStyle.color.init().mid_brown
         
-        style.blackLabel(label: titleLabel, size: 20)
+        self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
+        style.topButton(backFontButton, title: "首頁")
+        style.topButton(backButton, title: "返回")
+        
+        style.blackLabel(label: titleLabel, size: 22)
         
         nameTitleLabel.text = "姓氏"
+        style.blueWord(label: nameTitleLabel, size: 18, alignment: .center)
         firstNameTitleLabel.text = "名字"
+        style.blueWord(label: firstNameTitleLabel, size: 18, alignment: .center)
         birthdayTitleLabel.text = "請選擇出生日期"
+        style.blueWord(label: birthdayTitleLabel, size: 20, alignment: .center)
         
+        style.confirmButton(confirmButton, title: "確 定")
+        
+        style.keyInNameTF(tf: nameTF)
+        style.keyInNameTF(tf: firstNameTF)
     }
     //結束鍵盤
         @objc private func hideKeyboard() {
@@ -164,3 +189,17 @@ class KeyInNameViewController: UIViewController {
     
 }
 
+
+extension KeyInNameViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTF {
+            firstNameTF.becomeFirstResponder()
+        }else{
+            textField.endEditing(true)
+        }
+        return true
+    }
+    
+    
+}

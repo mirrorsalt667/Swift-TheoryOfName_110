@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6419D2532752174400A2451C /* WaterMovingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D2522752174400A2451C /* WaterMovingViewController.swift */; };
+		6444C398275CE2F100F4C0F3 /* BirthdayDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444C397275CE2F100F4C0F3 /* BirthdayDatePicker.swift */; };
 		6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490A0BD2749EF2400D9D547 /* typeOfAll.swift */; };
 		64D7A82727378047006C7479 /* globalFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D7A82627378047006C7479 /* globalFunc.swift */; };
 		64D7A82927378133006C7479 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D7A82827378133006C7479 /* FirstPageViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		6419D2522752174400A2451C /* WaterMovingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterMovingViewController.swift; sourceTree = "<group>"; };
+		6444C397275CE2F100F4C0F3 /* BirthdayDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayDatePicker.swift; sourceTree = "<group>"; };
 		6490A0BD2749EF2400D9D547 /* typeOfAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typeOfAll.swift; sourceTree = "<group>"; };
 		64D7A82627378047006C7479 /* globalFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globalFunc.swift; sourceTree = "<group>"; };
 		64D7A82827378133006C7479 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6444C396275CE2AB00F4C0F3 /* Something Tool */ = {
+			isa = PBXGroup;
+			children = (
+				6444C397275CE2F100F4C0F3 /* BirthdayDatePicker.swift */,
+			);
+			path = "Something Tool";
+			sourceTree = "<group>";
+		};
 		64D7A82527377FDE006C7479 /* global_func */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +115,7 @@
 		64D7DDCA271DB4E3004838B0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6444C396275CE2AB00F4C0F3 /* Something Tool */,
 				64D7DDB9271DB4C8004838B0 /* ViewController.swift */,
 				64D7A82827378133006C7479 /* FirstPageViewController.swift */,
 				64D7A82A2737822E006C7479 /* KeyInNameViewController.swift */,
@@ -188,6 +199,7 @@
 			files = (
 				6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */,
 				64D7A82F2737826E006C7479 /* NameListTableViewController.swift in Sources */,
+				6444C398275CE2F100F4C0F3 /* BirthdayDatePicker.swift in Sources */,
 				6419D2532752174400A2451C /* WaterMovingViewController.swift in Sources */,
 				64D7A82727378047006C7479 /* globalFunc.swift in Sources */,
 				64D7DDBA271DB4C8004838B0 /* ViewController.swift in Sources */,
