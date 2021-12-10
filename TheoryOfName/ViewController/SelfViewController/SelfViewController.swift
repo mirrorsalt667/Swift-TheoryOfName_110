@@ -1,19 +1,19 @@
 //
-//  NameNumViewController.swift
+//  SelfViewController.swift
 //  TheoryOfName
 //
-//  Created on 2021/11/7.
-//⎡⎤⎣⎦⎜⎟△▲▽▼↓↑
+//  Created by 黃肇祺 on 2021/12/10.
+//
 
 import UIKit
 
-class NameNumViewController: UIViewController {
-
+class SelfViewController: UIViewController {
+    
     let style = itemStyle()
     //必傳4項資料
-    var firstName = ""
-    var lastName = ""
-    var birthdate = ""
+    var firstName = "林"
+    var lastName = "恩在"
+    var birthdate = "98 / 09 / 20"
     var showKind = 0
     
     var tailNum = 0
@@ -44,6 +44,12 @@ class NameNumViewController: UIViewController {
     @IBOutlet weak var underLine: UILabel!
     @IBOutlet weak var totalNumLabel: UILabel!
     @IBOutlet weak var totalFive_eleLabel: UILabel!
+    
+    @IBOutlet weak var marriageView: UIView!
+    @IBOutlet weak var marriageUpLabel: UILabel!
+    @IBOutlet weak var marriageBetweenLabel: UILabel!
+    @IBOutlet weak var marriageDownLabel: UILabel!
+    
     
     @IBOutlet weak var backFontButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -238,6 +244,24 @@ class NameNumViewController: UIViewController {
         saveButton.bottomAnchor.constraint(equalTo: waterMoveButton.topAnchor, constant: -15).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        
+        marriageView.translatesAutoresizingMaskIntoConstraints = false
+        marriageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        marriageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        marriageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        marriageView.bottomAnchor.constraint(equalTo: underLine.topAnchor, constant: -15).isActive = true
+        
+        marriageUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        marriageUpLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
+        marriageUpLabel.topAnchor.constraint(equalTo: marriageView.topAnchor).isActive = true
+        
+        marriageBetweenLabel.translatesAutoresizingMaskIntoConstraints = false
+        marriageBetweenLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
+        marriageBetweenLabel.topAnchor.constraint(equalTo: marriageUpLabel.bottomAnchor, constant: 18).isActive = true
+        
+        marriageDownLabel.translatesAutoresizingMaskIntoConstraints = false
+        marriageDownLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
+        marriageDownLabel.topAnchor.constraint(equalTo: marriageBetweenLabel.bottomAnchor, constant: 18).isActive = true
     }
     func outlook() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor

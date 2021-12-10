@@ -14,6 +14,7 @@ class FirstPageViewController: UIViewController {
     
     let style = itemStyle()
     
+    var myName: SelfNameRecord?
     
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -32,16 +33,37 @@ class FirstPageViewController: UIViewController {
         sizeAndPosition()
         outlookAndShow()
         
+        readMyName()
     }
     
     
     
     @IBAction func selfButton(_ sender: Any) {
+        if let name = myName {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let selfName = storyboard.instantiateViewController(withIdentifier: "SelfViewController") as? SelfViewController {
+                selfName.firstName = name.firstName
+                selfName.lastName = name.lastName
+                selfName.birthdate = name.birthday
+                selfName.modalPresentationStyle = .fullScreen
+                present(selfName, animated: true, completion: nil)
+            }
+        }else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let keyIn = storyboard.instantiateViewController(withIdentifier: "SelfViewController")
+            keyIn.modalPresentationStyle = .fullScreen
+            present(keyIn, animated: true, completion: nil)
+        }
     }
     @IBAction func newButton(_ sender: Any) {
         performSegue(withIdentifier: "ToKeyInSegue", sender: nil)
     }
     @IBAction func recordButton(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nameList = storyboard.instantiateViewController(withIdentifier: "NameListViewController")
+        nameList.modalPresentationStyle = .fullScreen
+        present(nameList, animated: true, completion: nil)
     }
     @IBAction func aboutButton(_ sender: Any) {
     }
@@ -101,6 +123,15 @@ class FirstPageViewController: UIViewController {
         aboutButton.setTitle("關於我", for: .normal)
         aboutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         aboutButton.setTitleColor(itemStyle.color.init().mid_brown, for: .normal)
+    }
+    func readMyName() {
+        let propertyDecoder = PropertyListDecoder()
+        let document = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
+        let url = document.appendingPathComponent("MyName")
+        if let data = try? Data(contentsOf: url),
+           let receive = try? propertyDecoder.decode(SelfNameRecord.self, from: data) {
+            self.myName = receive
+        }
     }
     
     @IBAction func unwindToFirstPage(_ unwindSegue: UIStoryboardSegue) {

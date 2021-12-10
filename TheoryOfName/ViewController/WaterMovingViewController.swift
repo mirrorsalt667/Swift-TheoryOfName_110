@@ -290,6 +290,8 @@ class WaterMovingViewController: UIViewController {
     
     func labelShow(age: Int) {
         
+        self.view.backgroundColor = itemStyle.color.init().light_brown
+        
         titleLabel.text = "\(name) 流年 資料"
         
         birthdayLabel.text = "生日：\(birthday)"
