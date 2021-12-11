@@ -38,9 +38,7 @@ struct SelfNameRecord: Codable {
     var lastName: String
     var firstName: String
     var birthday: String
-    var diseaseNum: Int
-    var friendsNum: Int
-    var totalNameNum: Int
+    var num: SelfNameNum
 }
 struct SelfNameNum: Codable {
     var movingNum: Int

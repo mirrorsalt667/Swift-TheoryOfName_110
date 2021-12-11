@@ -13,6 +13,7 @@ class KeyInNameViewController: UIViewController {
     let keyMoving = keyboardMove()
     var firstName = ""
     var lastName = ""
+    var selfKeyInBool = false
     
     @IBOutlet weak var backFontButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -62,11 +63,32 @@ class KeyInNameViewController: UIViewController {
         if keyInFirst.count < 1 || keyInLast.count < 1 {
             print("輸入不完整")
         }else{
-            firstName = keyInFirst
-            lastName = keyInLast
-            performSegue(withIdentifier: "ToNameNumSegue", sender: nil)
+            if selfKeyInBool == false {
+                firstName = keyInFirst
+                lastName = keyInLast
+                performSegue(withIdentifier: "ToNameNumSegue", sender: nil)
+                
+            }else{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(withIdentifier: "SelfViewController") as? SelfViewController {
+                    vc.firstName = keyInFirst
+                    vc.lastName = keyInLast
+                    let birth = birthdatePicker.date
+                    let dateformatter = DateFormatter()
+                    dateformatter.dateFormat = "YYYY"
+                    let years = dateformatter.string(from: birth)
+                    var Taiwan = 0
+                    if let yearNum = Int(years) {
+                        Taiwan = yearNum - 1911
+                    }
+                    dateformatter.dateFormat = "MM / dd"
+                    let date = dateformatter.string(from: birth)
+                    vc.birthdate = "\(Taiwan) / \(date)"
+                    vc.newOrNotBool = true
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
         }
-        
     }
     
     func sizeAndPosition() {

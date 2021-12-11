@@ -11,16 +11,15 @@ class SelfViewController: UIViewController {
     
     let style = itemStyle()
     //必傳4項資料
-    var firstName = "林"
-    var lastName = "恩在"
-    var birthdate = "98 / 09 / 20"
+    var firstName = ""
+    var lastName = ""
+    var birthdate = ""
     var showKind = 0
     
     var tailNum = 0
     var arrays = [NameJson]()
-    var diseaseNum: Int = 0
-    var friendsNum: Int = 0
-    var totalNameNum: Int = 0
+    var myName: SelfNameRecord?
+    var newOrNotBool = false
     
     @IBOutlet weak var birthdateLabel: UILabel!
     @IBOutlet weak var movingNumLabel: UILabel!
@@ -78,34 +77,24 @@ class SelfViewController: UIViewController {
     
     @IBAction func waterMovingButton(_ sender: Any) {
         
-        performSegue(withIdentifier: "ToWaterMovingSegue", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "WaterMovingViewController") as? WaterMovingViewController {
+            vc.name = "\(self.lastName)\(self.firstName)"
+            vc.birthday = self.birthdate
+            vc.tailNum = self.tailNum
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     @IBAction func saveButton(_ sender: Any) {
-        if showKind == 0 {
-            var nameListArrays = [NameRecords]()
-            let saveYet = NameRecords(lastName: self.lastName, firstName: self.firstName, birthday: self.birthdate, diseaseNum: self.diseaseNum, friendsNum: self.friendsNum, totalNameNum: self.totalNameNum)
-            let property = PropertyListEncoder()
-            let property_decoder = PropertyListDecoder()
-            let documentDirectury = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
-            let url = documentDirectury.appendingPathComponent("nameRecord")
-            //check old data first
-            if let data = try? Data(contentsOf: url),
-               let receive = try? property_decoder.decode([NameRecords].self, from: data) {
-                nameListArrays = receive
-            }
-            nameListArrays.append(saveYet)
-            if let data = try? property.encode(nameListArrays) {
-                let url = documentDirectury.appendingPathComponent("nameRecord")
-                try? data.write(to: url)
-            }
-        }else if showKind == 1 {
-            //確定刪除？
-            let alert = UIAlertController(title: "確定刪除？", message: "", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-            let alertCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            alert.addAction(alertCancel)
-            alert.addAction(alertAction)
-            present(alert, animated: true, completion: nil)
+        
+    }
+    func saveMyName(name: SelfNameRecord) {
+        let document = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
+        let url = document.appendingPathComponent("MyName")
+        let encoder = PropertyListEncoder()
+        let data = try? encoder.encode(name)
+        if let _ = try? data?.write(to: url) {
+            print("save success, \(name)")
         }
     }
     
@@ -246,14 +235,14 @@ class SelfViewController: UIViewController {
         saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
         
         marriageView.translatesAutoresizingMaskIntoConstraints = false
-        marriageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        marriageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        marriageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        marriageView.heightAnchor.constraint(equalToConstant: 114).isActive = true
         marriageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         marriageView.bottomAnchor.constraint(equalTo: underLine.topAnchor, constant: -15).isActive = true
         
         marriageUpLabel.translatesAutoresizingMaskIntoConstraints = false
         marriageUpLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
-        marriageUpLabel.topAnchor.constraint(equalTo: marriageView.topAnchor).isActive = true
+        marriageUpLabel.topAnchor.constraint(equalTo: marriageView.topAnchor, constant: 7).isActive = true
         
         marriageBetweenLabel.translatesAutoresizingMaskIntoConstraints = false
         marriageBetweenLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
@@ -261,7 +250,7 @@ class SelfViewController: UIViewController {
         
         marriageDownLabel.translatesAutoresizingMaskIntoConstraints = false
         marriageDownLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
-        marriageDownLabel.topAnchor.constraint(equalTo: marriageBetweenLabel.bottomAnchor, constant: 18).isActive = true
+        marriageDownLabel.bottomAnchor.constraint(equalTo: marriageView.bottomAnchor, constant: -7).isActive = true
     }
     func outlook() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
@@ -290,6 +279,16 @@ class SelfViewController: UIViewController {
             saveButton.setTitle("刪除", for: .normal)
         }
         saveButton.setTitleColor(itemStyle.color.init().dark_green, for: .normal)
+        
+        marriageUpLabel.textColor = itemStyle.color.init().light_brown
+        marriageBetweenLabel.textColor = itemStyle.color.init().light_brown
+        marriageDownLabel.textColor = itemStyle.color.init().light_brown
+        
+        marriageView.layer.backgroundColor = itemStyle.color.init().dark_green.cgColor
+        marriageView.layer.shadowRadius = 5
+        marriageView.layer.shadowColor = itemStyle.color.init().dove_gray.cgColor
+        marriageView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        marriageView.layer.shadowOpacity = 0.7
     }
     
     func calcuate() {
@@ -327,13 +326,12 @@ class SelfViewController: UIViewController {
         let downText = whatArrow(first: fiveArrays[2], last: fiveArrays[3])
         
         
-        //匯出數字
-        //疾厄宮
-        self.diseaseNum = diseaseNum
-        //奴僕宮
-        self.friendsNum = friendsNum
-        //總格
-        self.totalNameNum = totalNum
+        //匯出資料
+        if newOrNotBool == true {
+            self.myName = SelfNameRecord(lastName: lastName, firstName: firstName, birthday: birthdate, num: SelfNameNum(movingNum: movingNum, parentsNum: parentNum, diseaseNum: diseaseNum, friendsNum: friendsNum, totalNameNum: totalNum))
+            guard let name = myName else { return }
+            saveMyName(name: name)
+        }
         
         //取尾數 減掉３
         tailNum = totalNum%10

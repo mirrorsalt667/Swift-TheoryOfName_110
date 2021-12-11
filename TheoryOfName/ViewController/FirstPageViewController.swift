@@ -33,9 +33,10 @@ class FirstPageViewController: UIViewController {
         sizeAndPosition()
         outlookAndShow()
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
         readMyName()
     }
-    
     
     
     @IBAction func selfButton(_ sender: Any) {
@@ -50,9 +51,11 @@ class FirstPageViewController: UIViewController {
             }
         }else{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let keyIn = storyboard.instantiateViewController(withIdentifier: "SelfViewController")
-            keyIn.modalPresentationStyle = .fullScreen
-            present(keyIn, animated: true, completion: nil)
+            if let keyIn = storyboard.instantiateViewController(withIdentifier: "KeyInNameViewController") as? KeyInNameViewController {
+                keyIn.selfKeyInBool = true
+                keyIn.modalPresentationStyle = .fullScreen
+                self.present(keyIn, animated: true, completion: nil)
+            }
         }
     }
     @IBAction func newButton(_ sender: Any) {
