@@ -43,9 +43,10 @@ class FirstPageViewController: UIViewController {
         if let name = myName {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let selfName = storyboard.instantiateViewController(withIdentifier: "SelfViewController") as? SelfViewController {
-                selfName.firstName = name.firstName
-                selfName.lastName = name.lastName
-                selfName.birthdate = name.birthday
+//                selfName.firstName = name.firstName
+//                selfName.lastName = name.lastName
+//                selfName.birthdate = name.birthday
+                selfName.myName = self.myName
                 selfName.modalPresentationStyle = .fullScreen
                 present(selfName, animated: true, completion: nil)
             }

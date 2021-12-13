@@ -82,7 +82,7 @@ class itemStyle {
     func brownButton(_ button: UIButton, title: String) {
         button.layer.backgroundColor = itemStyle.color.init().bright_brown.cgColor
         button.setTitle(title, for: .normal)
-        button.setTitleColor(UIColor.lightGray, for: .normal)
+        button.setTitleColor(itemStyle.color.init().dark_green, for: .normal)
         button.layer.borderWidth = 1.5
         button.layer.borderColor = itemStyle.color.init().dark_green.cgColor
         button.alpha = 0.8

@@ -71,8 +71,8 @@ class KeyInNameViewController: UIViewController {
             }else{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "SelfViewController") as? SelfViewController {
-                    vc.firstName = keyInFirst
-                    vc.lastName = keyInLast
+//                    vc.firstName = keyInFirst
+//                    vc.lastName = keyInLast
                     let birth = birthdatePicker.date
                     let dateformatter = DateFormatter()
                     dateformatter.dateFormat = "YYYY"
@@ -83,8 +83,10 @@ class KeyInNameViewController: UIViewController {
                     }
                     dateformatter.dateFormat = "MM / dd"
                     let date = dateformatter.string(from: birth)
-                    vc.birthdate = "\(Taiwan) / \(date)"
+//                    vc.birthdate = "\(Taiwan) / \(date)"
                     vc.newOrNotBool = true
+                    let myName = SelfNameRecord(lastName: keyInLast, firstName: keyInFirst, birthday: "\(Taiwan) / \(date)", num: SelfNameNum(movingNum: 0, parentsNum: 0, diseaseNum: 0, friendsNum: 0, totalNameNum: 0))
+                    vc.myName = myName
                     self.present(vc, animated: true, completion: nil)
                 }
             }

@@ -60,11 +60,11 @@ class WaterMovingViewController: UIViewController {
     func drawATen() {
         let width = self.view.frame.size.width
 //        let height = self.view.frame.size.height
-        let lineWidth = CGFloat(width - 180)
+        let lineLenght = CGFloat(width - 180)
         let heightFromTop = CGFloat(250)
         
         path.move(to: CGPoint(x: width/2, y: heightFromTop))
-        path.addLine(to: CGPoint(x: width/2, y: lineWidth + heightFromTop))
+        path.addLine(to: CGPoint(x: width/2, y: lineLenght + heightFromTop))
         
         shape.lineCap = .round
         shape.path = path.cgPath
@@ -72,8 +72,8 @@ class WaterMovingViewController: UIViewController {
         shape.lineWidth = 4
         self.view.layer.addSublayer(shape)
         
-        path.move(to: CGPoint(x: width/2-lineWidth/2, y: heightFromTop+lineWidth/2))
-        path.addLine(to: CGPoint(x: self.view.frame.midX+lineWidth/2, y: heightFromTop+lineWidth/2))
+        path.move(to: CGPoint(x: width/2-lineLenght/2, y: heightFromTop+lineLenght/2))
+        path.addLine(to: CGPoint(x: self.view.frame.midX+lineLenght/2, y: heightFromTop+lineLenght/2))
         
         shape.path = path.cgPath
         self.view.layer.addSublayer(shape)
@@ -81,20 +81,22 @@ class WaterMovingViewController: UIViewController {
     
     func drawCircle(Degree: CGFloat) {
         let width = self.view.frame.size.width
-        let lineWidth = CGFloat(width - 180)
+        let lineLenght = CGFloat(width - 180)
         let heightFromTop = CGFloat(250)
         let aDegree = CGFloat.pi/180
 
-        let degreePlus = Degree + CGFloat(3)
-        let circle = UIBezierPath(arcCenter: CGPoint(x: width/2, y: heightFromTop+lineWidth/2), radius: lineWidth/2, startAngle: aDegree*Degree, endAngle: aDegree*degreePlus, clockwise: true)
+        let degreePlus = Degree + CGFloat(2)
+        let circle = UIBezierPath(arcCenter: CGPoint(x: width/2, y: heightFromTop+lineLenght/2), radius: lineLenght/4, startAngle: aDegree*Degree, endAngle: aDegree*degreePlus, clockwise: true)
+//        let circle = UIBezierPath(ovalIn: CGRect(x: width/2, y: heightFromTop+lineLenght/2, width: lineLenght, height: lineLenght))
         
         
         let circelLayer = CAShapeLayer()
         circelLayer.path = circle.cgPath
-        circelLayer.lineWidth = 3
+        circelLayer.lineWidth = lineLenght/2
         circelLayer.fillColor = UIColor.blue.cgColor
         circelLayer.strokeColor = UIColor.darkGray.cgColor
-        circelLayer.lineCap = .round
+//        circelLayer.lineCap = .round
+        
         
         self.view.layer.addSublayer(circelLayer)
     }
