@@ -9,6 +9,7 @@ import UIKit
 
 class NameListViewController: UIViewController {
 
+    let style = itemStyle()
     var nameListArrays = [NameRecords]()
     var selectedRow: Int?
     
@@ -24,6 +25,8 @@ class NameListViewController: UIViewController {
         nameListTableView.delegate = self
         nameListTableView.dataSource = self
         
+        outLook()
+        codingLayout()
         readData()
     }
     
@@ -43,15 +46,18 @@ class NameListViewController: UIViewController {
         if let data = try? Data(contentsOf: url),
            let encoderData = try? property.decode([NameRecords].self, from: data) {
             self.nameListArrays = encoderData
+            self.nameListArrays.sort { ar1, ar2 in
+                ar1.lastName.compare(ar2.lastName) == .orderedAscending
+            }
             nameListTableView.reloadData()
         }
     }
     
     func codingLayout() {
         
-        let width = self.view.frame.width
-        let height = self.view.frame.height
-        let margins = backFontButton.superview!.layoutMarginsGuide
+//        let width = self.view.frame.width
+//        let height = self.view.frame.height
+        let margins = nameListTableView.superview!.layoutMarginsGuide
         
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
         backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
@@ -72,6 +78,11 @@ class NameListViewController: UIViewController {
         nameListTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
     }
     
+    func outLook() {
+        style.topButton(backFontButton, title: "首頁")
+        style.topButton(backButton, title: "返回")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "NameNumViewController" {
             if let controller = segue.destination as? NameNumViewController {
@@ -84,9 +95,15 @@ class NameListViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindToNameList(_ unwindSegue: UIStoryboardSegue) {
+        if let sourceViewController = unwindSegue.source as? NameNumViewController {
+        self.nameListArrays = sourceViewController.nameArrays
+        self.nameListTableView.reloadData()
+        }
+    }
 }
 
-
+//MARK: tableViewDelegate
 extension NameListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,10 +132,14 @@ extension NameListViewController: UITableViewDelegate, UITableViewDataSource {
             vc.lastName = nameListArrays[num].lastName
             vc.birthdate = nameListArrays[num].birthday
             vc.showKind = 1
+            //傳順序過去，便於編輯及刪除。
+            vc.row = selectedRow
+            vc.nameArrays = nameListArrays
             vc.modalPresentationStyle = .fullScreen
+//            let vCon = storyboard.instantiateViewController(withIdentifier: "NameNumViewController")
+//            self.navigationController?.pushViewController(vCon, animated: true)
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
     
 }

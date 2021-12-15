@@ -10,13 +10,16 @@ import UIKit
 class NameNumViewController: UIViewController {
 
     let style = itemStyle()
-    //必傳4項資料
+    //必傳資料
     var firstName = ""
     var lastName = ""
     var birthdate = ""
     var showKind = 0
     
     var tailNum = 0
+    var row: Int?
+    var nameArrays = [NameRecords]()
+    
     var arrays = [NameJson]()
     var diseaseNum: Int = 0
     var friendsNum: Int = 0
@@ -52,6 +55,7 @@ class NameNumViewController: UIViewController {
     @IBOutlet weak var personalityButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var segueButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -99,16 +103,170 @@ class NameNumViewController: UIViewController {
             let alertCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             alert.addAction(alertCancel)
             alert.addAction(alertAction)
-            present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true) {
+                self.deleteName()
+                self.performSegue(withIdentifier: "UnwindToNameList", sender: nil)
+//
+            }
+            
+//            if let controller = self.navigationController?.popViewController(animated: true) as? NameListViewController {
+//                controller.nameListArrays = self.nameArrays
+//                controller.nameListTableView.reloadData()
+//                print("worked")
+//            }
         }
     }
     
     
+   
+    
+    func calcuate() {
+        //先算筆畫 取數字 算五行 生剋平
+        let nameArrays = countName(lastName: lastName, firstName: firstName, arrays: arrays)
+        
+        let firstNum = nameArrays[0].writingNum
+        let secNum = nameArrays[1].writingNum
+        let thirdNum = nameArrays[2].writingNum
+        let fourthNum = nameArrays[3].writingNum
+        
+        let movingNum = firstNum + fourthNum
+        let parentNum = firstNum + secNum
+        let diseaseNum = secNum + thirdNum
+        let friendsNum = thirdNum + fourthNum
+        var totalNum = 0
+        
+        if firstNum == 1 && fourthNum == 1 {
+            totalNum = secNum + thirdNum
+        }else if firstNum == 1 && fourthNum != 1{
+            totalNum = secNum + thirdNum + fourthNum
+        }else if firstNum != 1 && fourthNum == 1{
+            totalNum = firstNum + secNum + thirdNum
+        }else{
+            totalNum = firstNum + secNum + thirdNum + fourthNum
+        }
+        
+        let numArrays: [Int] = [movingNum, parentNum, diseaseNum, friendsNum, totalNum]
+        var fiveArrays: [String] = []
+        
+        for k in 0...4 {
+            fiveArrays.append(fiveDoing(putIn: numArrays[k]))
+        }
+        let upText = whatArrow(first: fiveArrays[1], last: fiveArrays[2])
+        let downText = whatArrow(first: fiveArrays[2], last: fiveArrays[3])
+        
+        
+        //匯出數字
+        //疾厄宮
+        self.diseaseNum = diseaseNum
+        //奴僕宮
+        self.friendsNum = friendsNum
+        //總格
+        self.totalNameNum = totalNum
+        
+        //取尾數 減掉３
+        tailNum = totalNum%10
+        tailNum -= 3
+        if tailNum < 0 {
+            tailNum += 10
+        }
+        
+        
+//        firstNameLabel.text = nameArrays[0].word
+        showBigOLabel(label: firstNameLabel, show: nameArrays[0].word)
+        firstNameNumLabel.text = String(firstNum)
+//        secNameLabel.text = nameArrays[1].word
+        showBigOLabel(label: secNameLabel, show: nameArrays[1].word)
+        secNameNumLabel.text = String(secNum)
+//        thirdNameLabel.text = nameArrays[2].word
+        showBigOLabel(label: thirdNameLabel, show: nameArrays[2].word)
+        thirdNameNumLabel.text = String(thirdNum)
+//        fourNameLabel.text = nameArrays[3].word
+        showBigOLabel(label: fourNameLabel, show: nameArrays[3].word)
+        fourNameNumLabel.text = String(fourthNum)
+        movingNumLabel.text = String(movingNum)
+        movingFive_eleLabel.text = fiveArrays[0]
+        parentsNumLabel.text = String(parentNum)
+        parentsFive_eleLabel.text = fiveArrays[1]
+        diseaseNumLabel.text = String(diseaseNum)
+        diseaseFive_eleLabel.text = fiveArrays[2]
+        friendsNumLabel.text = String(friendsNum)
+        friendsFive_eleLabel.text = fiveArrays[3]
+        totalNumLabel.text = String(totalNum)
+        totalFive_eleLabel.text = fiveArrays[4]
+        upBetweenLabel.text = upText
+        if upText == "▽" || upText == "△" {
+            upBetweenLabel.textColor = UIColor.red
+        }else if upText == "||" {
+            upBetweenLabel.textColor = itemStyle.color.init().wordColor
+        }else{
+            upBetweenLabel.textColor = UIColor.black
+        }
+        downBetweenLabel.text = downText
+        if downText == "▽" || downText == "△" {
+            downBetweenLabel.textColor = UIColor.red
+        }else if downText == "||" {
+            downBetweenLabel.textColor = itemStyle.color.init().wordColor
+        }else{
+            downBetweenLabel.textColor = UIColor.black
+        }
+        birthdateLabel.text = "出生日期：" + birthdate
+    }
+    func showBigOLabel(label: UILabel, show: String) {
+        label.text = show
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 60)
+        if show == "Ｏ"{
+            label.textColor = UIColor.gray
+        }else{
+            label.textColor = itemStyle.color.init().dark_green
+        }
+    }
+    
+    func deleteName() {
+        if let indexPath = row {
+            nameArrays.remove(at: indexPath)
+            //save
+            let property = PropertyListEncoder()
+            let documentDirectury = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
+            if let data = try? property.encode(nameArrays) {
+                let url = documentDirectury.appendingPathComponent("nameRecord")
+                try? data.write(to: url)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ToWaterMovingSegue":
+            if let controller = segue.destination as? WaterMovingViewController {
+                
+                controller.name = "\(self.lastName)\(self.firstName)"
+                controller.birthday = self.birthdate
+                controller.tailNum = self.tailNum
+                print("傳送的資料\(controller.name), \(controller.birthday), \(controller.tailNum)")
+                
+            }
+        default: break
+            
+        }
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+//MARK: -outlook
+extension NameNumViewController {
     func sizeAndPosition() {
         let width = self.view.frame.width
-//        let height = self.view.frame.height
+        //        let height = self.view.frame.height
         let margins = birthdateLabel.superview!.layoutMarginsGuide
-//        let tenOneHeight = height/4
+        //        let tenOneHeight = height/4
         let twoOneWidth = width/2
         
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
@@ -232,7 +390,7 @@ class NameNumViewController: UIViewController {
         personalityButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
         personalityButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         personalityButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
-
+        
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.centerXAnchor.constraint(equalTo: waterMoveButton.centerXAnchor).isActive = true
         saveButton.bottomAnchor.constraint(equalTo: waterMoveButton.topAnchor, constant: -15).isActive = true
@@ -266,126 +424,6 @@ class NameNumViewController: UIViewController {
             saveButton.setTitle("刪除", for: .normal)
         }
         saveButton.setTitleColor(itemStyle.color.init().dark_green, for: .normal)
+        segueButton.isHidden = true
     }
-    
-    func calcuate() {
-        //先算筆畫 取數字 算五行 生剋平
-        let nameArrays = countName(lastName: lastName, firstName: firstName, arrays: arrays)
-        
-        let firstNum = nameArrays[0].writingNum
-        let secNum = nameArrays[1].writingNum
-        let thirdNum = nameArrays[2].writingNum
-        let fourthNum = nameArrays[3].writingNum
-        
-        let movingNum = firstNum + fourthNum
-        let parentNum = firstNum + secNum
-        let diseaseNum = secNum + thirdNum
-        let friendsNum = thirdNum + fourthNum
-        var totalNum = 0
-        
-        if firstNum == 1 && fourthNum == 1 {
-            totalNum = secNum + thirdNum
-        }else if firstNum == 1 && fourthNum != 1{
-            totalNum = secNum + thirdNum + fourthNum
-        }else if firstNum != 1 && fourthNum == 1{
-            totalNum = firstNum + secNum + thirdNum
-        }else{
-            totalNum = firstNum + secNum + thirdNum + fourthNum
-        }
-        
-        let numArrays: [Int] = [movingNum, parentNum, diseaseNum, friendsNum, totalNum]
-        var fiveArrays: [String] = []
-        
-        for k in 0...4 {
-            fiveArrays.append(fiveDoing(putIn: numArrays[k]))
-        }
-        let upText = whatArrow(first: fiveArrays[1], last: fiveArrays[2])
-        let downText = whatArrow(first: fiveArrays[2], last: fiveArrays[3])
-        
-        
-        //匯出數字
-        //疾厄宮
-        self.diseaseNum = diseaseNum
-        //奴僕宮
-        self.friendsNum = friendsNum
-        //總格
-        self.totalNameNum = totalNum
-        
-        //取尾數 減掉３
-        tailNum = totalNum%10
-        tailNum -= 3
-        if tailNum < 0 {
-            tailNum += 10
-        }
-        
-        
-//        firstNameLabel.text = nameArrays[0].word
-        showBigOLabel(label: firstNameLabel, show: nameArrays[0].word)
-        firstNameNumLabel.text = String(firstNum)
-//        secNameLabel.text = nameArrays[1].word
-        showBigOLabel(label: secNameLabel, show: nameArrays[1].word)
-        secNameNumLabel.text = String(secNum)
-//        thirdNameLabel.text = nameArrays[2].word
-        showBigOLabel(label: thirdNameLabel, show: nameArrays[2].word)
-        thirdNameNumLabel.text = String(thirdNum)
-//        fourNameLabel.text = nameArrays[3].word
-        showBigOLabel(label: fourNameLabel, show: nameArrays[3].word)
-        fourNameNumLabel.text = String(fourthNum)
-        movingNumLabel.text = String(movingNum)
-        movingFive_eleLabel.text = fiveArrays[0]
-        parentsNumLabel.text = String(parentNum)
-        parentsFive_eleLabel.text = fiveArrays[1]
-        diseaseNumLabel.text = String(diseaseNum)
-        diseaseFive_eleLabel.text = fiveArrays[2]
-        friendsNumLabel.text = String(friendsNum)
-        friendsFive_eleLabel.text = fiveArrays[3]
-        totalNumLabel.text = String(totalNum)
-        totalFive_eleLabel.text = fiveArrays[4]
-        upBetweenLabel.text = upText
-        if upText == "▽" || upText == "△" {
-            upBetweenLabel.textColor = UIColor.red
-        }else if upText == "||" {
-            upBetweenLabel.textColor = itemStyle.color.init().wordColor
-        }else{
-            upBetweenLabel.textColor = UIColor.black
-        }
-        downBetweenLabel.text = downText
-        if downText == "▽" || downText == "△" {
-            downBetweenLabel.textColor = UIColor.red
-        }else if downText == "||" {
-            downBetweenLabel.textColor = itemStyle.color.init().wordColor
-        }else{
-            downBetweenLabel.textColor = UIColor.black
-        }
-        birthdateLabel.text = "出生日期：" + birthdate
-    }
-    func showBigOLabel(label: UILabel, show: String) {
-        label.text = show
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 60)
-        if show == "Ｏ"{
-            label.textColor = UIColor.gray
-        }else{
-            label.textColor = itemStyle.color.init().dark_green
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "ToWaterMovingSegue":
-            if let controller = segue.destination as? WaterMovingViewController {
-                
-                controller.name = "\(self.lastName)\(self.firstName)"
-                controller.birthday = self.birthdate
-                controller.tailNum = self.tailNum
-                print("傳送的資料\(controller.name), \(controller.birthday), \(controller.tailNum)")
-                
-            }
-        default: break
-            
-        }
-    }
-    
-    
-    
 }
