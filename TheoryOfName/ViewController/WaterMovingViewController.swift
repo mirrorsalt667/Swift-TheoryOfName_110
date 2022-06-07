@@ -3,7 +3,7 @@
 //  TheoryOfName
 //
 //  Created on 2021/11/27.
-//
+//  流年
 
 import UIKit
 
@@ -56,7 +56,7 @@ class WaterMovingViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    //中間的十字
     func drawATen() {
         let width = self.view.frame.size.width
 //        let height = self.view.frame.size.height
@@ -94,7 +94,7 @@ class WaterMovingViewController: UIViewController {
         circelLayer.path = circle.cgPath
         circelLayer.lineWidth = lineLenght/2
         circelLayer.fillColor = UIColor.blue.cgColor
-        circelLayer.strokeColor = UIColor.darkGray.cgColor
+        circelLayer.strokeColor = UIColor.orange.cgColor
 //        circelLayer.lineCap = .round
         
         
@@ -142,6 +142,7 @@ class WaterMovingViewController: UIViewController {
             }
             return ageNum
         }
+        //圓圈的起點０度是在右邊
 //        let ageTail = ageTailCalculateReduceThree(age: age)
         print("姓名的尾數\(tailNum)")
         beginingLabel.text = "胎 (\(rangeOfAgeTail(ageTail: tailNum)))"
@@ -151,7 +152,7 @@ class WaterMovingViewController: UIViewController {
             beginingLabel.textColor = UIColor.orange
             //degree -> 90-120
             let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(90) + CGFloat(degreeInt)
+            nowDegree = CGFloat(90) + CGFloat(degreeInt) - CGFloat(15)
         }
         
 //        let twoOfBetween = lineWidth/2/3
@@ -162,7 +163,7 @@ class WaterMovingViewController: UIViewController {
             secLabel.textColor = UIColor.orange
             //degree -> 120-150
             let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(120) + CGFloat(degreeInt)
+            nowDegree = CGFloat(120) + CGFloat(degreeInt) - CGFloat(15)
         }
         
         thirdLabel.text = "長生 (\(rangeOfAgeTail(ageTail: tailNum+2)))"
@@ -172,7 +173,7 @@ class WaterMovingViewController: UIViewController {
             thirdLabel.textColor = UIColor.orange
             //degree -> 150-180
             let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(150) + CGFloat(degreeInt)
+            nowDegree = CGFloat(150) + CGFloat(degreeInt) - CGFloat(15)
         }
         
         fourthLabel.text = "冠帶 (\(rangeOfAgeTail(ageTail: tailNum+3)))"
@@ -181,8 +182,8 @@ class WaterMovingViewController: UIViewController {
         if ageTail == rangeOfAgeTail(ageTail: tailNum+3) {
             fourthLabel.textColor = UIColor.orange
             //degree -> 180-225
-            let degreeInt = 45 * agePercent[1] / 100
-            nowDegree = CGFloat(180) + CGFloat(degreeInt)
+            let degreeInt = 37 * agePercent[1] / 100
+            nowDegree = CGFloat(180) + CGFloat(degreeInt) - CGFloat(15)
         }
         
         fivethLabel.text = "臨冠 (\(rangeOfAgeTail(ageTail: tailNum+4)))"
@@ -192,7 +193,7 @@ class WaterMovingViewController: UIViewController {
             fivethLabel.textColor = UIColor.orange
             //degree -> 225-270
             let degreeInt = 45 * agePercent[1] / 100
-            nowDegree = CGFloat(225) + CGFloat(degreeInt)
+            nowDegree = CGFloat(225) + CGFloat(degreeInt) - CGFloat(22.5)
         }
 
         sixthLabel.text = "帝旺 (\(rangeOfAgeTail(ageTail: tailNum+5)))"
@@ -201,8 +202,8 @@ class WaterMovingViewController: UIViewController {
         if ageTail == rangeOfAgeTail(ageTail: tailNum+5) {
             sixthLabel.textColor = UIColor.orange
             //degree -> 270-300
-            let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(270) + CGFloat(degreeInt)
+            let degreeInt = 38 * agePercent[1] / 100
+            nowDegree = CGFloat(270) + CGFloat(degreeInt) - CGFloat(22.5)
         }
 
         seventhLabel.text = "衰 (\(rangeOfAgeTail(ageTail: tailNum+6)))"
@@ -212,7 +213,7 @@ class WaterMovingViewController: UIViewController {
             seventhLabel.textColor = UIColor.orange
             //degree -> 300-330
             let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(300) + CGFloat(degreeInt)
+            nowDegree = CGFloat(300) + CGFloat(degreeInt) - CGFloat(15)
         }
 
         eighthLabel.text = "病 (\(rangeOfAgeTail(ageTail: tailNum+7)))"
@@ -221,14 +222,15 @@ class WaterMovingViewController: UIViewController {
         if ageTail == rangeOfAgeTail(ageTail: tailNum+7) {
             eighthLabel.textColor = UIColor.orange
             //degree -> 330-30
-            var degreeInt = 60 * agePercent[1] / 100
-            switch degreeInt > 30 {
-            case true:
-                degreeInt -= 30
-                nowDegree = CGFloat(degreeInt)
-            default:
-                nowDegree = CGFloat(330) + CGFloat(degreeInt)
-            }
+            let degreeInt = 45 * agePercent[1] / 100
+            nowDegree = CGFloat(330) + CGFloat(degreeInt) - CGFloat(15)
+//            switch degreeInt > 30 {
+//            case true:
+//                degreeInt -= 30
+//                nowDegree = CGFloat(degreeInt)
+//            default:
+//                nowDegree = CGFloat(330) + CGFloat(degreeInt)
+//            }
         }
 
         ninethLabel.text = "死 (\(rangeOfAgeTail(ageTail: tailNum+8)))"
@@ -237,8 +239,8 @@ class WaterMovingViewController: UIViewController {
         if ageTail == rangeOfAgeTail(ageTail: tailNum+8) {
             ninethLabel.textColor = UIColor.orange
             //degree -> 30-60
-            let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(30) + CGFloat(degreeInt)
+            let degreeInt = 45 * agePercent[1] / 100
+            nowDegree = CGFloat(30) + CGFloat(degreeInt) - CGFloat(30)
         }
 
         tenthLabel.font = UIFont.systemFont(ofSize: 18)
@@ -249,7 +251,7 @@ class WaterMovingViewController: UIViewController {
             tenthLabel.textColor = UIColor.orange
             //degree -> 60-90
             let degreeInt = 30 * agePercent[1] / 100
-            nowDegree = CGFloat(60) + CGFloat(degreeInt)
+            nowDegree = CGFloat(60) + CGFloat(degreeInt) - CGFloat(15)
         }
         
         

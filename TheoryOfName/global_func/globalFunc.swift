@@ -243,15 +243,15 @@ func whatArrow(first: String, last: String) -> String {
     return returnStr
 }
 
-// 100 / 05 / 09 應為１２歲
+// 81 / 12 / 11
 func nowAgeAndPercent(birth: String) -> [Int] {        //percent
     let now = Date()
     let birthArrays = birth.components(separatedBy: " / ")
     //orignal
     guard birthArrays.count == 3 else { return [0] }
-    if let year_bir = Int(birthArrays[0]),
-       let month_bir = Int(birthArrays[1]),
-       let date_bir = Int(birthArrays[2]) {
+    if let year_bir = Int(birthArrays[0]), //81
+       let month_bir = Int(birthArrays[1]), //12
+       let date_bir = Int(birthArrays[2]) { //11
         let oriYear = 1911 + year_bir
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY"
@@ -260,15 +260,18 @@ func nowAgeAndPercent(birth: String) -> [Int] {        //percent
         let month = dateFormatter.string(from: now)
         dateFormatter.dateFormat = "dd"
         let date = dateFormatter.string(from: now)
-        if let yearInt = Int(year),
-           let monthInt = Int(month),
-           let dateInt = Int(date) {
-            var age = yearInt - oriYear
+        if let yearInt = Int(year), //2022
+           let monthInt = Int(month), //6
+           let dateInt = Int(date) { //7
+            print("now \(yearInt), bir \(year_bir)")
+            var age = yearInt - oriYear + 1 //2022-1992=30
+            //出生月份大於六
             if month_bir > 6 {
                 let edgeNum = month_bir - 6
                 if monthInt > edgeNum {
-                    
+                    //現在日期 2022-6-7
                     let bigDay = "\(yearInt)-\(monthInt)-\(dateInt)"
+                    //邊界日期 2022-6-11
                     let littleDay = "\(yearInt)-\(edgeNum)-\(date_bir)"
                     dateFormatter.dateFormat = "YYYY-MM-dd"
                     if let bigDate = dateFormatter.date(from: bigDay),
@@ -298,7 +301,8 @@ func nowAgeAndPercent(birth: String) -> [Int] {        //percent
                         return [age, percent]
                     }
                 }else{
-                    if dateInt >= date_bir {
+                    //現在時間等於邊界月份時
+                    if dateInt >= date_bir { //7, 11
                         let bigDay = "\(yearInt)-\(monthInt)-\(dateInt)"
                         let littleDay = "\(yearInt)-\(edgeNum)-\(date_bir)"
                         dateFormatter.dateFormat = "YYYY-MM-dd"
@@ -313,6 +317,7 @@ func nowAgeAndPercent(birth: String) -> [Int] {        //percent
                             return [age, percent]
                         }
                     }else{
+                        //當生日日期比今天日期大的時候，代表歲數還沒加
                         age -= 1
                         let bigDay = "\(yearInt)-\(monthInt)-\(dateInt)"
                         let littleDay = "\(yearInt-1)-\(edgeNum)-\(date_bir)"
@@ -523,7 +528,7 @@ func circleWhere(agePercent: [Int], startNum: Int, yearArrays: [String]) -> Time
     return TimeAndDegree(yearName: "", degree: 0)
 }
 
-
+//婚姻宮計算
 func marriageNumCalculate(diseaseNum: Int, friendNum: Int) -> [String] {
     
     var upNum = diseaseNum/10 + diseaseNum%10
