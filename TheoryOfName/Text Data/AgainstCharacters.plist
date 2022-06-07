@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>金剋木</string>
+		<key>character</key>
+		<string>叛逆性強、不信邪、外粗內細、善於掌控別人、怕軟不怕硬、主觀、判斷力強、果斷</string>
+		<key>activeness</key>
+		<string>快速、準確、敏銳、主動、積極</string>
+		<key>handleAffairs</key>
+		<string>要求嚴格、複雜簡單化、敬業、講求實力、敢突破、能吃苦、冒險性、負責任</string>
+		<key>attitude</key>
+		<string>能屈能伸(弱時能接受；強時有抗性)、能軟能硬(不易對他人心服)</string>
+		<key>goodPoint</key>
+		<string>改革、領導駕馭之特性、屬管理性人物、思緒敏銳、冷靜、深藏不露</string>
+		<key>weekPoint</key>
+		<string>得意忘形、自大、剛愎自用、過於主觀、好高騖遠</string>
+		<key>bornLucky</key>
+		<string>長輩緣(提拔)、奇蹟式的絕處逢生</string>
+		<key>career</key>
+		<string>加工、工程、生產、技術、發明創意性、改革性、軍、政、警、管理</string>
+		<key>lifeOutlook</key>
+		<string>傾向名利主義、掌握別人、自我操控</string>
+		<key>postscript</key>
+		<string>1金剋木容易在淫亂初末時期出現改革\n2女生通常較不喜歡金剋木的男生\n3對金剋木須以柔克剛\n4金剋木在行動功能時，生產事業佳，有手藝，但較無讀書運\n</string>
+	</dict>
+</array>
+</plist>

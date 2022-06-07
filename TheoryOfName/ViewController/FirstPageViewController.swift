@@ -9,6 +9,20 @@
 
 import UIKit
 
+struct CharactersContent: Decodable {
+    let title: String
+    let character: String
+    let activeness: String
+    let handleAffairs: String
+    let attitude: String
+    let goodPoint: String
+    let weekPoint: String
+    let bornLucky: String
+    let career: String
+    let lifeOutlook: String
+    let postscript: String
+}
+
 class FirstPageViewController: UIViewController {
 
     
@@ -32,6 +46,12 @@ class FirstPageViewController: UIViewController {
         
         sizeAndPosition()
         outlookAndShow()
+        let url = Bundle.main.url(forResource: "AgainstCharacters", withExtension: "plist")!
+        print(url.path)
+        if let data = try? Data(contentsOf: url),
+           let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
+            print(character[0].postscript)
+        }
         
     }
     override func viewWillAppear(_ animated: Bool) {

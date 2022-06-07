@@ -27,6 +27,8 @@
 		64D7DDBF271DB4CA004838B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDBE271DB4CA004838B0 /* Assets.xcassets */; };
 		64D7DDC2271DB4CA004838B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDC0271DB4CA004838B0 /* LaunchScreen.storyboard */; };
 		64D7DDCE271DC79F004838B0 /* dict_revised_1013.json in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */; };
+		64F299F0284F993100CACAEA /* Characters Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F299EF284F993100CACAEA /* Characters Property List.plist */; };
+		64F299F2284F9EAB00CACAEA /* AgainstCharacters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		64D7DDC1271DB4CA004838B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D7DDC3271DB4CA004838B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = dict_revised_1013.json; path = Assets.xcassets/dict_revised_1013.dataset/dict_revised_1013.json; sourceTree = "<group>"; };
+		64F299EF284F993100CACAEA /* Characters Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Characters Property List.plist"; sourceTree = "<group>"; };
+		64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgainstCharacters.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 		64D7DDB4271DB4C8004838B0 /* TheoryOfName */ = {
 			isa = PBXGroup;
 			children = (
+				64F299EE284F98B800CACAEA /* Text Data */,
 				64D7A82527377FDE006C7479 /* global_func */,
 				64D7DDCA271DB4E3004838B0 /* ViewController */,
 				64D7DDC9271DB4D1004838B0 /* storyboard */,
@@ -155,6 +160,15 @@
 				6419D2522752174400A2451C /* WaterMovingViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		64F299EE284F98B800CACAEA /* Text Data */ = {
+			isa = PBXGroup;
+			children = (
+				64F299EF284F993100CACAEA /* Characters Property List.plist */,
+				64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */,
+			);
+			path = "Text Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +232,8 @@
 				64D7DDBF271DB4CA004838B0 /* Assets.xcassets in Resources */,
 				64D7DDBD271DB4C8004838B0 /* Main.storyboard in Resources */,
 				64D7DDCE271DC79F004838B0 /* dict_revised_1013.json in Resources */,
+				64F299F2284F9EAB00CACAEA /* AgainstCharacters.plist in Resources */,
+				64F299F0284F993100CACAEA /* Characters Property List.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
