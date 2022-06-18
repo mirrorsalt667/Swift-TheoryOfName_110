@@ -5,6 +5,8 @@
 //  Created by 黃肇祺 on 2021/12/10.
 //
 
+//儲存的姓名資料
+
 import UIKit
 
 class NameListViewController: UIViewController {

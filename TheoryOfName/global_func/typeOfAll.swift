@@ -7,6 +7,24 @@
 
 import Foundation
 
+enum CharacterEnum: String {
+    case woodToWood = "木平宮" //1
+    case woodToFire = "木生火"//2
+    case woodToDust = "木剋土"//3
+    case goldToWood = "金剋木"//4
+    case waterToWood = "水生土"//5
+    case fireToFire = "火平宮"//6
+    case fireToDust = "火生土"//7
+    case fireToGold = "火剋金"//8
+    case waterToFire = "水剋火"//9
+    case dustToDust = "土平宮"//10
+    case dustToGold = "土生金"//11
+    case dustToWater = "土剋水"//12
+    case goldToGold = "金平宮"//13
+    case goldToWater = "金生水"//14
+    case waterToWater = "水平宮"//15
+}
+
 struct NameJson: Decodable {
     var id: Int
     var word: String

@@ -5,7 +5,7 @@
 //  Created on 2021/11/7.
 //
 //  資料儲存，非userdefault 方式
-//
+//  首頁
 
 import UIKit
 
@@ -26,9 +26,9 @@ struct CharactersContent: Decodable {
 class FirstPageViewController: UIViewController {
 
     
-    let style = itemStyle()
+    private let style = itemStyle()
     
-    var myName: SelfNameRecord?
+    private var myName: SelfNameRecord?
     
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -83,18 +83,18 @@ class FirstPageViewController: UIViewController {
         performSegue(withIdentifier: "ToKeyInSegue", sender: nil)
     }
     @IBAction func recordButton(_ sender: Any) {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let nameList = storyboard.instantiateViewController(withIdentifier: "NameListViewController")
         nameList.modalPresentationStyle = .fullScreen
         present(nameList, animated: true, completion: nil)
     }
     @IBAction func aboutButton(_ sender: Any) {
+        //預計放設計人資訊或命理老師資訊
     }
     
     
     
-    func sizeAndPosition() {
+    private func sizeAndPosition() {
         let width = self.view.frame.width
         let height = self.view.frame.height
         let margins = titleLabel.superview!.layoutMarginsGuide
@@ -133,7 +133,7 @@ class FirstPageViewController: UIViewController {
         backgroundIV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
     }
     
-    func outlookAndShow() {
+    private func outlookAndShow() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
         backgroundIV.image = UIImage(named: "background_name.png")
         backgroundIV.contentMode = .scaleAspectFill
@@ -148,7 +148,7 @@ class FirstPageViewController: UIViewController {
         aboutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         aboutButton.setTitleColor(itemStyle.color.init().mid_brown, for: .normal)
     }
-    func readMyName() {
+    private func readMyName() {
         let propertyDecoder = PropertyListDecoder()
         let document = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
         let url = document.appendingPathComponent("MyName")

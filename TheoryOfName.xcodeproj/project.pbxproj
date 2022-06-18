@@ -11,10 +11,13 @@
 		6444C398275CE2F100F4C0F3 /* BirthdayDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6444C397275CE2F100F4C0F3 /* BirthdayDatePicker.swift */; };
 		645C07C3275E4AF20024A49F /* styleAndColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645C07C2275E4AF20024A49F /* styleAndColor.swift */; };
 		6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490A0BD2749EF2400D9D547 /* typeOfAll.swift */; };
+		6491189C285E0729004BE13F /* BrainPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6491189B285E0729004BE13F /* BrainPartViewController.swift */; };
 		64B0F6B22762FB660028DCE6 /* NameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B12762FB660028DCE6 /* NameListViewController.swift */; };
 		64B0F6B42763071B0028DCE6 /* NameListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B32763071B0028DCE6 /* NameListTableViewCell.swift */; };
 		64B0F6B62763596E0028DCE6 /* NameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B52763596E0028DCE6 /* NameDetailViewController.swift */; };
 		64B0F6B9276389EA0028DCE6 /* SelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B8276389EA0028DCE6 /* SelfViewController.swift */; };
+		64C69E7228537F4A00B567E4 /* AssistanceCharacters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64C69E7128537F4900B567E4 /* AssistanceCharacters.plist */; };
+		64C69E74285389B900B567E4 /* EqualCharacters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64C69E73285389B900B567E4 /* EqualCharacters.plist */; };
 		64D7A82727378047006C7479 /* globalFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D7A82627378047006C7479 /* globalFunc.swift */; };
 		64D7A82927378133006C7479 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D7A82827378133006C7479 /* FirstPageViewController.swift */; };
 		64D7A82B2737822E006C7479 /* KeyInNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D7A82A2737822E006C7479 /* KeyInNameViewController.swift */; };
@@ -27,7 +30,6 @@
 		64D7DDBF271DB4CA004838B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDBE271DB4CA004838B0 /* Assets.xcassets */; };
 		64D7DDC2271DB4CA004838B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDC0271DB4CA004838B0 /* LaunchScreen.storyboard */; };
 		64D7DDCE271DC79F004838B0 /* dict_revised_1013.json in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */; };
-		64F299F0284F993100CACAEA /* Characters Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F299EF284F993100CACAEA /* Characters Property List.plist */; };
 		64F299F2284F9EAB00CACAEA /* AgainstCharacters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */; };
 /* End PBXBuildFile section */
 
@@ -36,10 +38,13 @@
 		6444C397275CE2F100F4C0F3 /* BirthdayDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayDatePicker.swift; sourceTree = "<group>"; };
 		645C07C2275E4AF20024A49F /* styleAndColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = styleAndColor.swift; sourceTree = "<group>"; };
 		6490A0BD2749EF2400D9D547 /* typeOfAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typeOfAll.swift; sourceTree = "<group>"; };
+		6491189B285E0729004BE13F /* BrainPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainPartViewController.swift; sourceTree = "<group>"; };
 		64B0F6B12762FB660028DCE6 /* NameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListViewController.swift; sourceTree = "<group>"; };
 		64B0F6B32763071B0028DCE6 /* NameListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListTableViewCell.swift; sourceTree = "<group>"; };
 		64B0F6B52763596E0028DCE6 /* NameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDetailViewController.swift; sourceTree = "<group>"; };
 		64B0F6B8276389EA0028DCE6 /* SelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfViewController.swift; sourceTree = "<group>"; };
+		64C69E7128537F4900B567E4 /* AssistanceCharacters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AssistanceCharacters.plist; sourceTree = "<group>"; };
+		64C69E73285389B900B567E4 /* EqualCharacters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EqualCharacters.plist; sourceTree = "<group>"; };
 		64D7A82627378047006C7479 /* globalFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = globalFunc.swift; sourceTree = "<group>"; };
 		64D7A82827378133006C7479 /* FirstPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		64D7A82A2737822E006C7479 /* KeyInNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInNameViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +59,6 @@
 		64D7DDC1271DB4CA004838B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D7DDC3271DB4CA004838B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = dict_revised_1013.json; path = Assets.xcassets/dict_revised_1013.dataset/dict_revised_1013.json; sourceTree = "<group>"; };
-		64F299EF284F993100CACAEA /* Characters Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Characters Property List.plist"; sourceTree = "<group>"; };
 		64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgainstCharacters.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,7 @@
 				64D7A82C27378246006C7479 /* NameNumViewController.swift */,
 				64D7A82E2737826E006C7479 /* NameListTableViewController.swift */,
 				6419D2522752174400A2451C /* WaterMovingViewController.swift */,
+				6491189B285E0729004BE13F /* BrainPartViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -165,8 +170,9 @@
 		64F299EE284F98B800CACAEA /* Text Data */ = {
 			isa = PBXGroup;
 			children = (
-				64F299EF284F993100CACAEA /* Characters Property List.plist */,
 				64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */,
+				64C69E7128537F4900B567E4 /* AssistanceCharacters.plist */,
+				64C69E73285389B900B567E4 /* EqualCharacters.plist */,
 			);
 			path = "Text Data";
 			sourceTree = "<group>";
@@ -229,11 +235,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D7DDC2271DB4CA004838B0 /* LaunchScreen.storyboard in Resources */,
+				64C69E74285389B900B567E4 /* EqualCharacters.plist in Resources */,
+				64C69E7228537F4A00B567E4 /* AssistanceCharacters.plist in Resources */,
 				64D7DDBF271DB4CA004838B0 /* Assets.xcassets in Resources */,
 				64D7DDBD271DB4C8004838B0 /* Main.storyboard in Resources */,
 				64D7DDCE271DC79F004838B0 /* dict_revised_1013.json in Resources */,
 				64F299F2284F9EAB00CACAEA /* AgainstCharacters.plist in Resources */,
-				64F299F0284F993100CACAEA /* Characters Property List.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +256,7 @@
 				6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */,
 				645C07C3275E4AF20024A49F /* styleAndColor.swift in Sources */,
 				64D7A82F2737826E006C7479 /* NameListTableViewController.swift in Sources */,
+				6491189C285E0729004BE13F /* BrainPartViewController.swift in Sources */,
 				6444C398275CE2F100F4C0F3 /* BirthdayDatePicker.swift in Sources */,
 				6419D2532752174400A2451C /* WaterMovingViewController.swift in Sources */,
 				64B0F6B22762FB660028DCE6 /* NameListViewController.swift in Sources */,

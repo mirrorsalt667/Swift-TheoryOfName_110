@@ -26,5 +26,172 @@
 		<key>postscript</key>
 		<string>1金剋木容易在淫亂初末時期出現改革\n2女生通常較不喜歡金剋木的男生\n3對金剋木須以柔克剛\n4金剋木在行動功能時，生產事業佳，有手藝，但較無讀書運\n</string>
 	</dict>
+	<dict>
+		<key>title</key>
+		<string>木剋土</string>
+		<key>character</key>
+		<string>內斂（隱藏）、擅企畫、有時固執、易感覺鈍相（外鈍內精）、穩定、保守、執著</string>
+		<key>activeness</key>
+		<string>被動、不易浮躁、按部就班形、持續力較強（對認可之事）、份內事積極主動、規律</string>
+		<key>handleAffairs</key>
+		<string>喜規畫好再行動、講求道理、制度、規則、法條</string>
+		<key>attitude</key>
+		<string>接受指令形、外冷內熱（表裡不一）、不直接打擊（拒絕）別人、有時陰奉陽達</string>
+		<key>goodPoint</key>
+		<string>隱藏性極強、善於企畫、整合、守法則、屬於策略、規畫性之人格特質</string>
+		<key>weekPoint</key>
+		<string>不易快速轉彎、過於守成、固執、等待、不易溝通、不善多於解釋、過於執著</string>
+		<key>bornLucky</key>
+		<string>外鄉絲較好（到外地發展較有貴人、易受照顧、成功）</string>
+		<key>career</key>
+		<string>智慧性、企畫、整合、交通葉、作家、學者、電腦、顧問、廣告、公職人貞、政治</string>
+		<key>lifeOutlook</key>
+		<string>講求實際主義者（較踏實）</string>
+		<key>postscript</key>
+		<string>1.君个言，則易有心病易鬱卒。
+2.外地發展，易有貴人，易成功。
+3.不堪被激(陰性、易鬱卒)
+4.君信企業家族的第二代子佳(凶点承援力）5.大克士迁迴)與土剋水(善忘)的人不易溝通。
+6.屬晚發型，白手起家的成功率不大。
+?.答應木剋士的事一定要做到．否則他易記仇
+8.講求承諾，不講求浪漫，會記仇
+木克土 器家总想 防禁性強
+成功特點：1.人際要好，見人要笑。
+2.善於溝通、說服。
+3.恒得整合規劃。
+4.行事主動。
+調整方針：1.性格執著。
+2.拳守成規，易喪失外地緣與資人
+3.太堅持到底，永不悔改。
+4.避免理法傷人。
+連用方向：1外地賞人。
+2.緊追賢能好人，</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>土剋水</string>
+		<key>character</key>
+		<string>樂天、安逸、隨和、喜好變化性事物（美幻）、時怕壓力（逃避）、愛幻想、聰明、善於分析、慕僚輔佐功能強</string>
+		<key>activeness</key>
+		<string>缓慢、短暫性衝動、被動、恩多行少</string>
+		<key>handleAffairs</key>
+		<string>配合形、合夥合群性強、善於結合群體力量、保守、善調解</string>
+		<key>attitude</key>
+		<string>親和力強（尤以異性）、有時輕浮、隨遇而安、喜攀附、有時易衝動</string>
+		<key>goodPoint</key>
+		<string>設計、調解、多學形、屬幕僚管理之人格特質、輔佐、攀附、策畫（思想功能為水生木〕</string>
+		<key>weekPoint</key>
+		<string>遇關鍵時易逃避、心不夠細（看表不看裹）、缺動作力、輕浮、不易專心、易虎頭蛇尾、挑剔、怕壓力</string>
+		<key>bornLucky</key>
+		<string>異性佇立、合作助力</string>
+		<key>career</key>
+		<string>分析、商、買賣業、美化事業、服務業、電腦業、幕僚、設計、合夥事業、輔佐</string>
+		<key>lifeOutlook</key>
+		<string>愛好自由、講求安逸、屬和平主義者</string>
+		<key>postscript</key>
+		<string>1.善忘、不善協調溝通、留不住人扌。
+2.當官不剪，屬儒家思想，讀書輕鬆
+3.臨時抱佛腳的能力強、讀書會強記
+士剋水
+儒家崽想怕壂力
+成功特點：1.做事要積極主動。
+2.勤勞耕耘。
+3.行事小心謹慎。
+4. 敢擔重任
+調整方針：1.内心急躁。
+2.生4無大志。
+3.要接受約束；虎頭蛇尾
+4.找理由原諒自己。
+連用方向：1.合作動力
+2.對下要親</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>水剋火</string>
+		<key>character</key>
+		<string>感性、熱忱、外向、學習強、熱心、善分析變化、多意見、急性衝動、好抱不平、反應激烈（火生土只有偶而）、效忠（火生土缺乏安全感故比較相信自己）</string>
+		<key>activeness</key>
+		<string>缺乏耐性、急性、主動、活動性強</string>
+		<key>handleAffairs</key>
+		<string>迎合、敢冒險、改變結構、講求效率及利益、具投機性、會變化</string>
+		<key>attitude</key>
+		<string>熱心、效忠、喜新厭舊、易合易散、排外性強</string>
+		<key>goodPoint</key>
+		<string>護主性、服務、幾近、善提供意見、交易形、保鏢形</string>
+		<key>weekPoint</key>
+		<string>易簡單複雜化、破壞性強（易玉石俱焚）、浮躁、缺乏耐力、易不满、分裂性、排斥性</string>
+		<key>bornLucky</key>
+		<string>第二手之機會（代理）、亂中得機</string>
+		<key>career</key>
+		<string>公關（外交）、公益、代理、貿易、外體設計、商業、藝術、五鬼行業、買賣、服務</string>
+		<key>lifeOutlook</key>
+		<string>講求利益及氣氛（兩性）、情調主義</string>
+		<key>postscript</key>
+		<string>：1賭王、股場大亨多屬此類。
+2.所有格中最聰明，領悟力最高。
+3.在思想功能上≥效忠、反應快；在行動功能上＞變化、破壞性強。
+4.困苦中可發展，安逸中易沉淪。
+5.水剋火若在行動功能上且鵀陰性，會比較沒情認、不安全、猿忌。
+6.先天喜愛藝術古董。
+7.水克火愛送花，火剋金愛收花，火剋金的女生易嫁給水剋火的男生，但也
+县分手。
+8.一開始會利用别人來打天下，成功之後就會想自己掌權(對自己效忠）。
+9.從商若是水克火會較刺激；若是土剋水則是較好命
+水克火 雜家总想 亂中取勝，洗得利益
+咸功特點：1.對他人熱心
+2.忠心不二，無計較心
+3.鲣持釗医。
+4.處事穩定
+調整方針：1.處事要簡單，勿複雜化。
+2.書變、个滿情緒。
+3,挑撥他人：
+4.無法共有天下。
+連用方向：1.拿別人當橋樑。
+2.對內要和。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>火剋金</string>
+		<key>character</key>
+		<string>雙重性格、多考慮、敏感（樂、憂兩形）、神經質、小心謹慎、猶豫、行為反覆、溫和、怕壓力、易祭張、具同情心、研究、分析思考、耐力十足</string>
+		<key>activeness</key>
+		<string>有時積極、有時消極、有耐力</string>
+		<key>handleAffairs</key>
+		<string>小心、三恩而行、講求完美、謹慎、善溝通</string>
+		<key>attitude</key>
+		<string>易接受別人意見但末必遵循、協調性夠、幽默、溫和具同情心</string>
+		<key>goodPoint</key>
+		<string>謹慎小心、喜好研究思考、模仿力強、耐心、溝通協調</string>
+		<key>weekPoint</key>
+		<string>易反向行事、神經質、怕壓力、缺乏數字觀念（尤以疾惡宮24）、優柔寒斷</string>
+		<key>bornLucky</key>
+		<string>易得寵（貴人）、人際關係</string>
+		<key>career</key>
+		<string>研究學者、水電工程、進出口、顧問、律師、演藝、公職、公關、娱樂業、化工、電業（電子、電纜、雷腦）、技術性</string>
+		<key>lifeOutlook</key>
+		<string>講求精神主義、講求浪漫</string>
+		<key>postscript</key>
+		<string>1.行動功能震陰性，特別謹慎小心。
+2.别人的席苦是我的快樂。
+3,喜好玄學，女命既拜且賭，易在宗教上有所成就。
+4.火剋金若在思想功能上＞研究、思考，易得上寵。
+5.火剋金若在行動功能上＞協認、溝通，易得下寵：陰性龙易招攬人士。
+6.女命若微胖、豐滿較好命
+7.火剋金破水剋火。
+8.在有錢家易泾亂：餐困家易成功。
+9.生性謹慎，對一件新事物都採較保守的態度，小心地不斷去試探，
+火剋金
+老莊思想 佔地利人和，易有人士
+成功特點：1.人綠好，配合度高。2.肯相信别人。
+3.行事要穩定，說一不二
+4 要踏實
+調整方針：1.性格上之矛盾、猜忌
+2.逆向行事，反覆不定。
+3.投機心理、
+4.情緒傷人。
+運用方向：1.懂培養人扌(授權與施捨）。
+2.用人不疑•疑人不用。
+3.運用人際關係，行動功能陰性易成功</string>
+	</dict>
 </array>
 </plist>

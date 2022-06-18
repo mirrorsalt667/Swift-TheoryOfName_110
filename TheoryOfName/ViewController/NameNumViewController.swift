@@ -5,6 +5,8 @@
 //  Created on 2021/11/7.
 //⎡⎤⎣⎦⎜⎟△▲▽▼↓↑
 
+//顯示姓名筆畫及五行
+
 import UIKit
 
 class NameNumViewController: UIViewController {

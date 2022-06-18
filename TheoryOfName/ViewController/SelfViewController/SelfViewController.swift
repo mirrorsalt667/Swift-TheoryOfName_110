@@ -5,6 +5,8 @@
 //  Created by 黃肇祺 on 2021/12/10.
 //
 
+//自己的姓名資料
+
 import UIKit
 
 class SelfViewController: UIViewController {
@@ -217,7 +219,7 @@ class SelfViewController: UIViewController {
 
 //MARK: - outlook & Layout
 extension SelfViewController {
-    func sizeAndPosition() {
+    private func sizeAndPosition() {
         let width = self.view.frame.width
         let height = self.view.frame.height
         let margins = birthdateLabel.superview!.layoutMarginsGuide
