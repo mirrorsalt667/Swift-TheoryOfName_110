@@ -19,7 +19,7 @@ class BrainPartViewController: UIViewController {
     var mBrainTitle: String = ""
     var mAge: Int = 0
     private var mBrainContent: CharactersContent?
-    private var mActionTitle: String = ""
+    var mActionTitle: String = ""
     private var mActionContent: CharactersContent?
     
     
@@ -64,7 +64,8 @@ class BrainPartViewController: UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        
+        print("頭腦功能->", mBrainTitle)
+        print("行動功能->", mActionTitle)
     }
     
     
@@ -84,8 +85,58 @@ class BrainPartViewController: UIViewController {
     private func setLabelWords(isBrain: Bool) {
         if isBrain {
             pageTitleLabel.text = mBrainTitle
+            if mAge == 35 {
+                //剛好
+                pageSubtitleLabel.text = "思想功能會在35歲前後慢慢轉變為行動功能。"
+            }else if mAge > 35 {
+                pageSubtitleLabel.text = "思想功能會在35-\(mAge)歲間慢慢轉變為行動功能。"
+            }else{
+                pageSubtitleLabel.text = "思想功能會在\(mAge)-35歲間慢慢轉變為行動功能。"
+            }
+            if mBrainTitle.contains(where: { word in
+                word == "平"
+            })  {
+                
+            }else{
+                if let brainContent = mBrainContent {
+                    characterLabel.text = brainContent.character
+                    activenessLabel.text = brainContent.activeness
+                    handleAffairsLabel.text = brainContent.handleAffairs
+                    attitudeLabel.text = brainContent.attitude
+                    goodPointLabel.text = brainContent.goodPoint
+                    weekPointLabel.text = brainContent.weekPoint
+                    bornLuckyLabel.text = brainContent.bornLucky
+                    careerLabel.text = brainContent.career
+                    lifeOutlookLabel.text = brainContent.lifeOutlook
+                }
+            }
         }else{
-            
+            pageTitleLabel.text = mActionTitle
+            if mAge == 35 {
+                //剛好
+                pageSubtitleLabel.text = "思想功能會在35歲前後慢慢轉變為行動功能。"
+            }else if mAge > 35 {
+                pageSubtitleLabel.text = "思想功能會在35-\(mAge)歲間慢慢轉變為行動功能。"
+            }else{
+                pageSubtitleLabel.text = "思想功能會在\(mAge)-35歲間慢慢轉變為行動功能。"
+            }
+            if mActionTitle.contains(where: { word in
+                word == "平"
+            })  {
+                
+            }else{
+                if let content = mActionContent {
+                    characterLabel.text = content.character
+                    activenessLabel.text = content.activeness
+                    handleAffairsLabel.text = content.handleAffairs
+                    attitudeLabel.text = content.attitude
+                    goodPointLabel.text = content.goodPoint
+                    weekPointLabel.text = content.weekPoint
+                    bornLuckyLabel.text = content.bornLucky
+                    careerLabel.text = content.career
+                    lifeOutlookLabel.text = content.lifeOutlook
+                }
+            }
         }
         
     }

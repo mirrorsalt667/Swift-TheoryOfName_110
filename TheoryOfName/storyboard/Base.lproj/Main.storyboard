@@ -450,6 +450,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="性格"/>
+                                <connections>
+                                    <action selector="toCharactersPageAction:" destination="Zaq-BE-TqB" eventType="touchUpInside" id="DcB-ek-UVK"/>
+                                    <segue destination="8lL-Te-TXk" kind="show" identifier="ToBrainTabSegue" id="7L5-JK-NeU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="△▲▽▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xa1-fR-IJF">
                                 <rect key="frame" x="209" y="329" width="60" height="24"/>
@@ -921,9 +925,9 @@
         <!--思想功能-->
         <scene sceneID="y6j-3b-VMn">
             <objects>
-                <viewController id="61N-az-qnk" customClass="BrainPartViewController" customModule="TheoryOfName" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BrainPartViewController" id="61N-az-qnk" customClass="BrainPartViewController" customModule="TheoryOfName" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Whf-iu-Yex">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hp3-5X-3lb">
@@ -1452,17 +1456,19 @@
             </objects>
             <point key="canvasLocation" x="144.80000000000001" y="-678.32512315270935"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Brain Tab Bar View Controller-->
         <scene sceneID="VvK-4b-nHW">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8lL-Te-TXk" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="BrainTabViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="8lL-Te-TXk" customClass="BrainTabBarViewController" customModule="TheoryOfName" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="eKj-c3-CFV"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vrr-Jf-cWi">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="61N-az-qnk" kind="relationship" relationship="viewControllers" id="Wvx-Vs-dJe"/>
+                        <segue destination="61N-az-qnk" kind="relationship" relationship="viewControllers" destinationCreationSelector="ToBrainPageSegue" id="Wvx-Vs-dJe"/>
                         <segue destination="bic-1E-rCo" kind="relationship" relationship="viewControllers" id="2Fg-tJ-6JR"/>
                     </connections>
                 </tabBarController>
@@ -1475,7 +1481,7 @@
             <objects>
                 <viewController id="bic-1E-rCo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nxe-0k-7Mc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfW-Mt-ZgA">

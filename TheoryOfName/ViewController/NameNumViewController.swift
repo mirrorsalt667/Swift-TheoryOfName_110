@@ -11,13 +11,15 @@ import UIKit
 
 class NameNumViewController: UIViewController {
 
-    let style = itemStyle()
+    //MARK: init
+    private let style = itemStyle()
     //必傳資料
     var firstName = ""
     var lastName = ""
     var birthdate = ""
     var showKind = 0
     
+    //尾數，流年用
     var tailNum = 0
     var row: Int?
     var nameArrays = [NameRecords]()
@@ -25,8 +27,15 @@ class NameNumViewController: UIViewController {
     var arrays = [NameJson]()
     var diseaseNum: Int = 0
     var friendsNum: Int = 0
+    //命宮
     var totalNameNum: Int = 0
     
+    private var mBrain:String = ""
+    private var mAction:String = ""
+    
+    
+    
+    //MARK: Outlet Components
     @IBOutlet weak var birthdateLabel: UILabel!
     @IBOutlet weak var movingNumLabel: UILabel!
     @IBOutlet weak var movingFive_eleLabel: UILabel!
@@ -60,6 +69,8 @@ class NameNumViewController: UIViewController {
     @IBOutlet weak var segueButton: UIButton!
     
     
+    
+    //MARK: View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +83,9 @@ class NameNumViewController: UIViewController {
         }
     }
     
+    
+    
+    //MARK: Action
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -119,9 +133,23 @@ class NameNumViewController: UIViewController {
         }
     }
     
+    //前往個性頁面
+    @IBAction func toCharactersPageAction(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let controller = storyboard.instantiateViewController(withIdentifier: "BrainPartViewController") as? BrainPartViewController {
+//            //傳命宮數字
+//            controller.mAge = self.totalNameNum
+//            //思想功能
+//            controller.mBrainTitle = self.mBrain
+//            //行動功能
+//            controller.mActionTitle = self.mAction
+//            present(controller, animated: true, completion: nil)
+//        }
+    }
+    
     
    
-    
+    //MARK: Other Function
     func calcuate() {
         //先算筆畫 取數字 算五行 生剋平
         let nameArrays = countName(lastName: lastName, firstName: firstName, arrays: arrays)
@@ -198,18 +226,40 @@ class NameNumViewController: UIViewController {
         upBetweenLabel.text = upText
         if upText == "▽" || upText == "△" {
             upBetweenLabel.textColor = UIColor.red
+            switch upText {
+            case "△": mBrain = "\(fiveArrays[1])剋\(fiveArrays[0])"
+            case "▽": mBrain = "\(fiveArrays[0])剋\(fiveArrays[1])"
+            default: break
+            }
         }else if upText == "||" {
             upBetweenLabel.textColor = itemStyle.color.init().wordColor
+            mBrain = "\(fiveArrays[0])平宮"
         }else{
             upBetweenLabel.textColor = UIColor.black
+            switch upText {
+            case "↓": mBrain = "\(fiveArrays[0])生\(fiveArrays[1])"
+            case "↑": mBrain = "\(fiveArrays[1])生\(fiveArrays[0])"
+            default: break
+            }
         }
         downBetweenLabel.text = downText
         if downText == "▽" || downText == "△" {
             downBetweenLabel.textColor = UIColor.red
+            switch upText {
+            case "△": mAction = "\(fiveArrays[2])剋\(fiveArrays[1])"
+            case "▽": mAction = "\(fiveArrays[1])剋\(fiveArrays[2])"
+            default: break
+            }
         }else if downText == "||" {
             downBetweenLabel.textColor = itemStyle.color.init().wordColor
+            mAction = "\(fiveArrays[2])平宮"
         }else{
             downBetweenLabel.textColor = UIColor.black
+            switch upText {
+            case "↓": mAction = "\(fiveArrays[1])生\(fiveArrays[2])"
+            case "↑": mAction = "\(fiveArrays[2])生\(fiveArrays[1])"
+            default: break
+            }
         }
         birthdateLabel.text = "出生日期：" + birthdate
     }
@@ -248,13 +298,18 @@ class NameNumViewController: UIViewController {
                 print("傳送的資料\(controller.name), \(controller.birthday), \(controller.tailNum)")
                 
             }
+        case "ToBrainTabSegue":
+            if let controller = segue.destination as? BrainTabBarViewController {
+                print("to tab bar page?")
+//                controller.mBrainTitle = self.mBrain
+//                controller.mActionTitle = self.mAction
+                gBrainCharacter = self.mBrain
+                gActionCharacter = self.mAction
+            }
         default: break
             
         }
     }
-    
-    
-    
 }
 
 
@@ -262,9 +317,9 @@ class NameNumViewController: UIViewController {
 
 
 
-//MARK: -outlook
+//MARK: - outlook
 extension NameNumViewController {
-    func sizeAndPosition() {
+    private func sizeAndPosition() {
         let width = self.view.frame.width
         //        let height = self.view.frame.height
         let margins = birthdateLabel.superview!.layoutMarginsGuide
@@ -399,7 +454,7 @@ extension NameNumViewController {
         saveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
     }
-    func outlook() {
+    private func outlook() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
         style.topButton(backFontButton, title: "首頁")
         style.topButton(backButton, title: "返回")

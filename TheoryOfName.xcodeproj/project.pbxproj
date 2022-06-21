@@ -12,6 +12,8 @@
 		645C07C3275E4AF20024A49F /* styleAndColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645C07C2275E4AF20024A49F /* styleAndColor.swift */; };
 		6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6490A0BD2749EF2400D9D547 /* typeOfAll.swift */; };
 		6491189C285E0729004BE13F /* BrainPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6491189B285E0729004BE13F /* BrainPartViewController.swift */; };
+		649E3CAD28606EFA009BB8B7 /* BrainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649E3CAC28606EFA009BB8B7 /* BrainTabBarViewController.swift */; };
+		649E3CAF2861E193009BB8B7 /* Global Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649E3CAE2861E193009BB8B7 /* Global Variable.swift */; };
 		64B0F6B22762FB660028DCE6 /* NameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B12762FB660028DCE6 /* NameListViewController.swift */; };
 		64B0F6B42763071B0028DCE6 /* NameListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B32763071B0028DCE6 /* NameListTableViewCell.swift */; };
 		64B0F6B62763596E0028DCE6 /* NameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F6B52763596E0028DCE6 /* NameDetailViewController.swift */; };
@@ -39,6 +41,8 @@
 		645C07C2275E4AF20024A49F /* styleAndColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = styleAndColor.swift; sourceTree = "<group>"; };
 		6490A0BD2749EF2400D9D547 /* typeOfAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typeOfAll.swift; sourceTree = "<group>"; };
 		6491189B285E0729004BE13F /* BrainPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainPartViewController.swift; sourceTree = "<group>"; };
+		649E3CAC28606EFA009BB8B7 /* BrainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrainTabBarViewController.swift; path = TheoryOfName/ViewController/BrainTabBarViewController.swift; sourceTree = SOURCE_ROOT; };
+		649E3CAE2861E193009BB8B7 /* Global Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Global Variable.swift"; sourceTree = "<group>"; };
 		64B0F6B12762FB660028DCE6 /* NameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListViewController.swift; sourceTree = "<group>"; };
 		64B0F6B32763071B0028DCE6 /* NameListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListTableViewCell.swift; sourceTree = "<group>"; };
 		64B0F6B52763596E0028DCE6 /* NameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDetailViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		64D7A82527377FDE006C7479 /* global_func */ = {
 			isa = PBXGroup;
 			children = (
+				649E3CAE2861E193009BB8B7 /* Global Variable.swift */,
 				64D7A82627378047006C7479 /* globalFunc.swift */,
 				6490A0BD2749EF2400D9D547 /* typeOfAll.swift */,
 				645C07C2275E4AF20024A49F /* styleAndColor.swift */,
@@ -162,6 +167,7 @@
 				64D7A82C27378246006C7479 /* NameNumViewController.swift */,
 				64D7A82E2737826E006C7479 /* NameListTableViewController.swift */,
 				6419D2522752174400A2451C /* WaterMovingViewController.swift */,
+				649E3CAC28606EFA009BB8B7 /* BrainTabBarViewController.swift */,
 				6491189B285E0729004BE13F /* BrainPartViewController.swift */,
 			);
 			path = ViewController;
@@ -251,7 +257,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649E3CAF2861E193009BB8B7 /* Global Variable.swift in Sources */,
 				64B0F6B42763071B0028DCE6 /* NameListTableViewCell.swift in Sources */,
+				649E3CAD28606EFA009BB8B7 /* BrainTabBarViewController.swift in Sources */,
 				64B0F6B62763596E0028DCE6 /* NameDetailViewController.swift in Sources */,
 				6490A0BE2749EF2400D9D547 /* typeOfAll.swift in Sources */,
 				645C07C3275E4AF20024A49F /* styleAndColor.swift in Sources */,
