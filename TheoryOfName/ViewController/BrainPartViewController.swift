@@ -16,10 +16,10 @@ class BrainPartViewController: UIViewController {
     
     
 //    var mIsBrain: Bool = true
-    var mBrainTitle: String = ""
-    var mAge: Int = 0
+    private var mBrainTitle: String = ""
+    private var mAge: Int = 0
     private var mBrainContent: CharactersContent?
-    var mActionTitle: String = ""
+    private var mActionTitle: String = ""
     private var mActionContent: CharactersContent?
     
     
@@ -58,9 +58,15 @@ class BrainPartViewController: UIViewController {
         super.viewDidLoad()
         setOutlookStyle()
         scrollViewPosition()
+        mBrainTitle = gBrainCharacter
+        mActionTitle = gActionCharacter
+        mAge = gAgeNum
         
         //取得資料
-        mBrainContent = getCharacterData(title: mBrainTitle)
+        mBrainContent = getCharacterData(title: gBrainCharacter)
+        
+        
+        setLabelWords(isBrain: true)
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +77,9 @@ class BrainPartViewController: UIViewController {
     
     
     //MARK: Action Connect
+    @IBAction func closeBtnAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     

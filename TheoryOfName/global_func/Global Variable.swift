@@ -8,5 +8,18 @@
 import Foundation
 
 
-var gBrainCharacter: String = ""
-var gActionCharacter: String = ""
+var gBrainCharacter: String = "" {
+    didSet {
+        print(gBrainCharacter)
+    }
+}
+var gActionCharacter: String = ""{
+    didSet {
+        print(gActionCharacter)
+    }
+}
+var gAgeNum: Int = 0 {
+    didSet {
+        print(gAgeNum)
+    }
+}

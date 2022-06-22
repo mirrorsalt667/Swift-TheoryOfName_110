@@ -91,9 +91,9 @@ class NameNumViewController: UIViewController {
     }
     
     @IBAction func waterMovingButton(_ sender: Any) {
-        
         performSegue(withIdentifier: "ToWaterMovingSegue", sender: nil)
     }
+    
     @IBAction func saveButton(_ sender: Any) {
         if showKind == 0 {
             var nameListArrays = [NameRecords]()
@@ -214,7 +214,7 @@ class NameNumViewController: UIViewController {
         showBigOLabel(label: fourNameLabel, show: nameArrays[3].word)
         fourNameNumLabel.text = String(fourthNum)
         movingNumLabel.text = String(movingNum)
-        movingFive_eleLabel.text = fiveArrays[0]
+        movingFive_eleLabel.text = fiveArrays[0] //遷移
         parentsNumLabel.text = String(parentNum)
         parentsFive_eleLabel.text = fiveArrays[1]
         diseaseNumLabel.text = String(diseaseNum)
@@ -227,8 +227,8 @@ class NameNumViewController: UIViewController {
         if upText == "▽" || upText == "△" {
             upBetweenLabel.textColor = UIColor.red
             switch upText {
-            case "△": mBrain = "\(fiveArrays[1])剋\(fiveArrays[0])"
-            case "▽": mBrain = "\(fiveArrays[0])剋\(fiveArrays[1])"
+            case "△": mBrain = "\(fiveArrays[2])剋\(fiveArrays[1])"
+            case "▽": mBrain = "\(fiveArrays[1])剋\(fiveArrays[2])"
             default: break
             }
         }else if upText == "||" {
@@ -237,17 +237,17 @@ class NameNumViewController: UIViewController {
         }else{
             upBetweenLabel.textColor = UIColor.black
             switch upText {
-            case "↓": mBrain = "\(fiveArrays[0])生\(fiveArrays[1])"
-            case "↑": mBrain = "\(fiveArrays[1])生\(fiveArrays[0])"
+            case "↓": mBrain = "\(fiveArrays[1])生\(fiveArrays[2])"
+            case "↑": mBrain = "\(fiveArrays[2])生\(fiveArrays[1])"
             default: break
             }
         }
         downBetweenLabel.text = downText
         if downText == "▽" || downText == "△" {
             downBetweenLabel.textColor = UIColor.red
-            switch upText {
-            case "△": mAction = "\(fiveArrays[2])剋\(fiveArrays[1])"
-            case "▽": mAction = "\(fiveArrays[1])剋\(fiveArrays[2])"
+            switch downText {
+            case "△": mAction = "\(fiveArrays[3])剋\(fiveArrays[2])"
+            case "▽": mAction = "\(fiveArrays[2])剋\(fiveArrays[3])"
             default: break
             }
         }else if downText == "||" {
@@ -255,14 +255,23 @@ class NameNumViewController: UIViewController {
             mAction = "\(fiveArrays[2])平宮"
         }else{
             downBetweenLabel.textColor = UIColor.black
-            switch upText {
-            case "↓": mAction = "\(fiveArrays[1])生\(fiveArrays[2])"
-            case "↑": mAction = "\(fiveArrays[2])生\(fiveArrays[1])"
+            switch downText {
+            case "↓": mAction = "\(fiveArrays[2])生\(fiveArrays[3])"
+            case "↑": mAction = "\(fiveArrays[3])生\(fiveArrays[2])"
             default: break
             }
         }
         birthdateLabel.text = "出生日期：" + birthdate
+        
+        
+        //傳至全域
+        gBrainCharacter = mBrain
+        gActionCharacter = mAction
+        gAgeNum = totalNameNum
     }
+    
+    
+    
     func showBigOLabel(label: UILabel, show: String) {
         label.text = show
         label.textAlignment = .center
@@ -298,16 +307,7 @@ class NameNumViewController: UIViewController {
                 print("傳送的資料\(controller.name), \(controller.birthday), \(controller.tailNum)")
                 
             }
-        case "ToBrainTabSegue":
-            if let controller = segue.destination as? BrainTabBarViewController {
-                print("to tab bar page?")
-//                controller.mBrainTitle = self.mBrain
-//                controller.mActionTitle = self.mAction
-                gBrainCharacter = self.mBrain
-                gActionCharacter = self.mAction
-            }
         default: break
-            
         }
     }
 }
