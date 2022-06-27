@@ -33,6 +33,7 @@
 		64D7DDC2271DB4CA004838B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDC0271DB4CA004838B0 /* LaunchScreen.storyboard */; };
 		64D7DDCE271DC79F004838B0 /* dict_revised_1013.json in Resources */ = {isa = PBXBuildFile; fileRef = 64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */; };
 		64F299F2284F9EAB00CACAEA /* AgainstCharacters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */; };
+		64F3B9CA28674F2F0061E741 /* ActionPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F3B9C928674F2F0061E741 /* ActionPartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		64D7DDC3271DB4CA004838B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D7DDCD271DC79F004838B0 /* dict_revised_1013.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = dict_revised_1013.json; path = Assets.xcassets/dict_revised_1013.dataset/dict_revised_1013.json; sourceTree = "<group>"; };
 		64F299F1284F9EAB00CACAEA /* AgainstCharacters.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AgainstCharacters.plist; sourceTree = "<group>"; };
+		64F3B9C928674F2F0061E741 /* ActionPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				6419D2522752174400A2451C /* WaterMovingViewController.swift */,
 				649E3CAC28606EFA009BB8B7 /* BrainTabBarViewController.swift */,
 				6491189B285E0729004BE13F /* BrainPartViewController.swift */,
+				64F3B9C928674F2F0061E741 /* ActionPartViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				649E3CAF2861E193009BB8B7 /* Global Variable.swift in Sources */,
+				64F3B9CA28674F2F0061E741 /* ActionPartViewController.swift in Sources */,
 				64B0F6B42763071B0028DCE6 /* NameListTableViewCell.swift in Sources */,
 				649E3CAD28606EFA009BB8B7 /* BrainTabBarViewController.swift in Sources */,
 				64B0F6B62763596E0028DCE6 /* NameDetailViewController.swift in Sources */,

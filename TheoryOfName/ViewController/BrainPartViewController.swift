@@ -57,7 +57,7 @@ class BrainPartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setOutlookStyle()
-        scrollViewPosition()
+        setScrollViewFrame(scroll: bigScrollView, stack: bigStackView)
         mBrainTitle = gBrainCharacter
         mActionTitle = gActionCharacter
         mAge = gAgeNum
@@ -87,9 +87,20 @@ class BrainPartViewController: UIViewController {
     private func setOutlookStyle() {
         pageTitleLabel.text = mBrainTitle
     }
-    private func scrollViewPosition() {
+    
+    //設置滑動範圍
+    private func setScrollViewFrame(scroll: UIScrollView, stack: UIStackView) {
         
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        scroll.contentLayoutGuide.owningView?.translatesAutoresizingMaskIntoConstraints = false
+        scroll.contentLayoutGuide.heightAnchor.constraint(equalTo: stack.heightAnchor).isActive = true
     }
+    
     //顯示Label內容
     private func setLabelWords(isBrain: Bool) {
         if isBrain {
@@ -149,6 +160,7 @@ class BrainPartViewController: UIViewController {
         }
         
     }
+    
     //切換頁面
     func changePage(isBrain: Bool, title: String) {
         //若是平宮，要隱藏比較多
