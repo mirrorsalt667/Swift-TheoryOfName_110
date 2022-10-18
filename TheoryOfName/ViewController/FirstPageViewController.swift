@@ -46,12 +46,12 @@ class FirstPageViewController: UIViewController {
         
         sizeAndPosition()
         outlookAndShow()
-        let url = Bundle.main.url(forResource: "AgainstCharacters", withExtension: "plist")!
-        print(url.path)
-        if let data = try? Data(contentsOf: url),
-           let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
-            print(character[0].postscript)
-        }
+//        let url = Bundle.main.url(forResource: "AgainstCharacters", withExtension: "plist")!
+//        print(url.path)
+//        if let data = try? Data(contentsOf: url),
+//           let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
+//            print(character[0].postscript)
+//        }
         
     }
     override func viewWillAppear(_ animated: Bool) {
