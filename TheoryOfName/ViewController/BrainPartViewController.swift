@@ -2,28 +2,29 @@
 //  BrainPartViewController.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2022/6/18.
+//  Created by on 2022/6/18.
 //
 
-// 思想＆行動功能頁面
+// MARK: 思想功能頁面
 
 import UIKit
 
-class BrainPartViewController: UIViewController {
+final class BrainPartViewController: UIViewController {
     
     //MARK: init
     private let tStyle = itemStyle()
     
-    
-    //    var mIsBrain: Bool = true
-    private var mBrainTitle: String = ""
     private var mAge: Int = 0
+    private var mBrainTitle: String = ""
     private var mBrainContent: CharactersContent?
-    private var mActionTitle: String = ""
-    private var mActionContent: CharactersContent?
+//    private var mActionTitle: String = ""
+//    private var mActionContent: CharactersContent?
     
     
     //MARK: Outlet Component
+    @IBOutlet var backFontButton: UIButton!
+    @IBOutlet var backButton: UIButton!
+    
     @IBOutlet weak var bigScrollView: UIScrollView!
     @IBOutlet weak var bigStackView: UIStackView!
     
@@ -58,8 +59,7 @@ class BrainPartViewController: UIViewController {
         super.viewDidLoad()
         setOutlookStyle()
         mBrainTitle = gBrainCharacter
-        mActionTitle = gActionCharacter
-        mAge = gAgeNum
+        mAge = gTotalNameNum
         
         //取得資料
         mBrainContent = getCharacterData(title: gBrainCharacter)
@@ -67,12 +67,10 @@ class BrainPartViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setScrollViewFrame(scroll: bigScrollView, stack: bigStackView)
-        setLabelWords(isBrain: true)
+        setLabelWords()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("頭腦功能->", mBrainTitle)
-        print("行動功能->", mActionTitle)
     }
     
     
@@ -87,6 +85,8 @@ class BrainPartViewController: UIViewController {
     //MARK: Other Function
     private func setOutlookStyle() {
         pageTitleLabel.text = mBrainTitle
+        tStyle.topButton(backFontButton, title: "首頁")
+        tStyle.topButton(backButton, title: "返回")
     }
     
     //設置滑動範圍
@@ -103,120 +103,81 @@ class BrainPartViewController: UIViewController {
     }
     
     //顯示Label內容
-    private func setLabelWords(isBrain: Bool) {
-        if isBrain {
-            pageTitleLabel.text = mBrainTitle
-            if mAge == 35 {
-                //剛好
-                pageSubtitleLabel.text = "思想功能會在35歲前後慢慢轉變為行動功能。"
-            }else if mAge > 35 {
-                pageSubtitleLabel.text = "思想功能會在35-\(mAge)歲間慢慢轉變為行動功能。"
-            }else{
-                pageSubtitleLabel.text = "思想功能會在\(mAge)-35歲間慢慢轉變為行動功能。"
-            }
-            if mBrainTitle.contains(where: { word in
-                word == "平"
-            })  {
-                if let brainContent = mBrainContent {
-                    var string = ""
-                    if brainContent.character != "" {
-                        string += brainContent.character + "\n"
-                    }
-                    if brainContent.activeness != "" {
-                        string += brainContent.activeness + "\n"
-                    }
-                    if brainContent.handleAffairs != "" {
-                        string += brainContent.handleAffairs + "\n"
-                    }
-                    if brainContent.attitude != "" {
-                        string += brainContent.attitude + "\n"
-                    }
-                    if brainContent.goodPoint != "" {
-                        string += brainContent.goodPoint + "\n"
-                    }
-                    if brainContent.weekPoint != "" {
-                        string += brainContent.weekPoint + "\n"
-                    }
-                    if brainContent.bornLucky != "" {
-                        string += brainContent.bornLucky + "\n"
-                    }
-                    if brainContent.career != "" {
-                        string += brainContent.career + "\n"
-                    }
-                    if brainContent.lifeOutlook != "" {
-                        string += brainContent.lifeOutlook + "\n"
-                    }
-                    characterLabel.text = string
-                    activenessTitleLabel.isHidden = true
-                    handleAffairsTitleLabel.isHidden = true
-                    attitudeTitleLabel.isHidden = true
-                    goodPointTitleLabel.isHidden = true
-                    weekPointTitleLabel.isHidden = true
-                    bornLuckyTitleLabel.isHidden = true
-                    careerTitleLabel.isHidden = true
-                    lifeOutlookTitleLabel.isHidden = true
-                    activenessLabel.isHidden = true
-                    handleAffairsLabel.isHidden = true
-                    attitudeLabel.isHidden = true
-                    goodPointLabel.isHidden = true
-                    weekPointLabel.isHidden = true
-                    bornLuckyLabel.isHidden = true
-                    careerLabel.isHidden = true
-                    lifeOutlookLabel.isHidden = true
+    private func setLabelWords() {
+        pageTitleLabel.text = mBrainTitle
+        if mAge == 35 {
+            //剛好
+            pageSubtitleLabel.text = "思想功能會在35歲前後慢慢轉變為行動功能。"
+        }else if mAge > 35 {
+            pageSubtitleLabel.text = "思想功能會在35-\(mAge)歲間慢慢轉變為行動功能。"
+        }else{
+            pageSubtitleLabel.text = "思想功能會在\(mAge)-35歲間慢慢轉變為行動功能。"
+        }
+        if mBrainTitle.contains(where: { word in
+            word == "平"
+        })  {
+            if let brainContent = mBrainContent {
+                var string = ""
+                if brainContent.character != "" {
+                    string += brainContent.character + "\n"
                 }
-            }else{
-                if let brainContent = mBrainContent {
-                    characterLabel.text = brainContent.character
-                    activenessLabel.text = brainContent.activeness
-                    handleAffairsLabel.text = brainContent.handleAffairs
-                    attitudeLabel.text = brainContent.attitude
-                    goodPointLabel.text = brainContent.goodPoint
-                    weekPointLabel.text = brainContent.weekPoint
-                    bornLuckyLabel.text = brainContent.bornLucky
-                    careerLabel.text = brainContent.career
-                    lifeOutlookLabel.text = brainContent.lifeOutlook
+                if brainContent.activeness != "" {
+                    string += brainContent.activeness + "\n"
                 }
+                if brainContent.handleAffairs != "" {
+                    string += brainContent.handleAffairs + "\n"
+                }
+                if brainContent.attitude != "" {
+                    string += brainContent.attitude + "\n"
+                }
+                if brainContent.goodPoint != "" {
+                    string += brainContent.goodPoint + "\n"
+                }
+                if brainContent.weekPoint != "" {
+                    string += brainContent.weekPoint + "\n"
+                }
+                if brainContent.bornLucky != "" {
+                    string += brainContent.bornLucky + "\n"
+                }
+                if brainContent.career != "" {
+                    string += brainContent.career + "\n"
+                }
+                if brainContent.lifeOutlook != "" {
+                    string += brainContent.lifeOutlook + "\n"
+                }
+                characterLabel.text = string
+                activenessTitleLabel.isHidden = true
+                handleAffairsTitleLabel.isHidden = true
+                attitudeTitleLabel.isHidden = true
+                goodPointTitleLabel.isHidden = true
+                weekPointTitleLabel.isHidden = true
+                bornLuckyTitleLabel.isHidden = true
+                careerTitleLabel.isHidden = true
+                lifeOutlookTitleLabel.isHidden = true
+                activenessLabel.isHidden = true
+                handleAffairsLabel.isHidden = true
+                attitudeLabel.isHidden = true
+                goodPointLabel.isHidden = true
+                weekPointLabel.isHidden = true
+                bornLuckyLabel.isHidden = true
+                careerLabel.isHidden = true
+                lifeOutlookLabel.isHidden = true
             }
         }else{
-            pageTitleLabel.text = mActionTitle
-            if mAge == 35 {
-                //剛好
-                pageSubtitleLabel.text = "思想功能會在35歲前後慢慢轉變為行動功能。"
-            }else if mAge > 35 {
-                pageSubtitleLabel.text = "思想功能會在35-\(mAge)歲間慢慢轉變為行動功能。"
-            }else{
-                pageSubtitleLabel.text = "思想功能會在\(mAge)-35歲間慢慢轉變為行動功能。"
-            }
-            if mActionTitle.contains(where: { word in
-                word == "平"
-            })  {
-                
-            }else{
-                if let content = mActionContent {
-                    characterLabel.text = content.character
-                    activenessLabel.text = content.activeness
-                    handleAffairsLabel.text = content.handleAffairs
-                    attitudeLabel.text = content.attitude
-                    goodPointLabel.text = content.goodPoint
-                    weekPointLabel.text = content.weekPoint
-                    bornLuckyLabel.text = content.bornLucky
-                    careerLabel.text = content.career
-                    lifeOutlookLabel.text = content.lifeOutlook
-                }
+            if let brainContent = mBrainContent {
+                characterLabel.text = brainContent.character
+                activenessLabel.text = brainContent.activeness
+                handleAffairsLabel.text = brainContent.handleAffairs
+                attitudeLabel.text = brainContent.attitude
+                goodPointLabel.text = brainContent.goodPoint
+                weekPointLabel.text = brainContent.weekPoint
+                bornLuckyLabel.text = brainContent.bornLucky
+                careerLabel.text = brainContent.career
+                lifeOutlookLabel.text = brainContent.lifeOutlook
             }
         }
-        
     }
     
-    //切換頁面
-    func changePage(isBrain: Bool, title: String) {
-        //若是平宮，要隱藏比較多
-        if isBrain {
-            
-        }else{
-            
-        }
-    }
     //取得個性資料
     private func getCharacterData(title: String) -> CharactersContent? {
         var url = URL(string: "")
@@ -235,9 +196,7 @@ class BrainPartViewController: UIViewController {
         }else if title.contains(where: { word in
             word == "平"
         }) {
-            print("平宮觸發 => start")
             if let insideUrl = Bundle.main.url(forResource: "EqualCharacters", withExtension: "plist") {
-                print("平宮觸發 => get url")
                 url = insideUrl
             }
         }
@@ -264,7 +223,6 @@ class BrainPartViewController: UIViewController {
                 //                    }
                 //                }
             } else {
-                print("解析資料失敗")
                 return nil
             }
         }

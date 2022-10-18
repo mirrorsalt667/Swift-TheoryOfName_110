@@ -5,6 +5,7 @@
 //  Created on 2021/11/21.
 //
 
+// MARK: Enum 及 解析JSON型別
 import Foundation
 
 enum CharacterEnum: String {

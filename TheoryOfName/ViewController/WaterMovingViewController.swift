@@ -3,12 +3,15 @@
 //  TheoryOfName
 //
 //  Created on 2021/11/27.
-//  流年
+
+//  MARK: 流年
 
 import UIKit
 
-class WaterMovingViewController: UIViewController {
+final class WaterMovingViewController: UIViewController {
 
+    private let style = itemStyle()
+    
     let path = UIBezierPath()
     let shape = CAShapeLayer()
     var birthday = ""
@@ -43,12 +46,11 @@ class WaterMovingViewController: UIViewController {
         let ageAndPercent = nowAgeAndPercent(birth: birthday)
         let age = ageAndPercent[0]
         print(ageAndPercent)
-        
+        codingLayout()
+        outlook()
         drawATen()
         position(agePercent: ageAndPercent)
-        codingLayout()
         labelShow(age: age)
-        
     }
     
     
@@ -144,7 +146,7 @@ class WaterMovingViewController: UIViewController {
         }
         //圓圈的起點０度是在右邊
 //        let ageTail = ageTailCalculateReduceThree(age: age)
-        print("姓名的尾數\(tailNum)")
+        print("胎位置的數字\(tailNum)")
         beginingLabel.text = "胎 (\(rangeOfAgeTail(ageTail: tailNum)))"
         beginingLabel.frame.size = CGSize(width: oneWordWidth, height: labelHeight)
         beginingLabel.frame = setLabel(beginingLabel, point: CGPoint(x: width/2, y: heightFromTop+lineWidth+betweenH))
@@ -260,18 +262,24 @@ class WaterMovingViewController: UIViewController {
         
     }
     
-    func codingLayout() {
+    private func codingLayout() {
 //        let width = self.view.frame.size.width
 //        let height = self.view.frame.size.height
         let margins = titleLabel.superview!.layoutMarginsGuide
         
+        let topButtonHeight: CGFloat = 56
+        
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
         backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
         backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: backFontButton.bottomAnchor, constant: 20).isActive = true
@@ -290,6 +298,12 @@ class WaterMovingViewController: UIViewController {
         bottomTextView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50).isActive = true
         bottomTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50).isActive = true
         bottomTextView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -30).isActive = true
+        bottomTextView.isHidden = true
+    }
+    
+    private func outlook() {
+        style.topButton(backFontButton, title: "首頁")
+        style.topButton(backButton, title: "返回")
     }
     
     func labelShow(age: Int) {

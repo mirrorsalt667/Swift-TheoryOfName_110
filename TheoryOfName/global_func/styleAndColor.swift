@@ -2,8 +2,10 @@
 //  styleAndColor.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2021/12/6.
+//  Created by on 2021/12/6.
 //
+
+// MARK: 元件樣式
 
 import Foundation
 import UIKit

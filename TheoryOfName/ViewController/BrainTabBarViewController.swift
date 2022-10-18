@@ -2,8 +2,10 @@
 //  BrainTabBarViewController.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2022/6/20.
+//  Created by on 2022/6/20.
 //
+
+// MARK: 思想行動功能的TAB VIEW
 
 import UIKit
 

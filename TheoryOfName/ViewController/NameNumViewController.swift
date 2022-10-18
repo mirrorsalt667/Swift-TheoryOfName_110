@@ -5,7 +5,7 @@
 //  Created on 2021/11/7.
 //⎡⎤⎣⎦⎜⎟△▲▽▼↓↑
 
-//顯示姓名筆畫及五行
+//MARK: 顯示姓名筆畫及五行
 
 import UIKit
 
@@ -74,7 +74,6 @@ class NameNumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sizeAndPosition()
         arrays = getData()
         
         DispatchQueue.main.async {
@@ -83,6 +82,12 @@ class NameNumViewController: UIViewController {
         }
     }
     
+    // layout 完成
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeAndPosition()
+        workOnButton.isHidden = true
+    }
     
     
     //MARK: Action
@@ -267,7 +272,7 @@ class NameNumViewController: UIViewController {
         //傳至全域
         gBrainCharacter = mBrain
         gActionCharacter = mAction
-        gAgeNum = totalNameNum
+        gTotalNameNum = totalNameNum
     }
     
     
@@ -325,18 +330,19 @@ extension NameNumViewController {
         let margins = birthdateLabel.superview!.layoutMarginsGuide
         //        let tenOneHeight = height/4
         let twoOneWidth = width/2
+        let topButtonHeight: CGFloat = 56
         
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         birthdateLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdateLabel.topAnchor.constraint(equalTo: backFontButton.bottomAnchor, constant: 15).isActive = true
@@ -430,29 +436,32 @@ extension NameNumViewController {
         totalFive_eleLabel.leadingAnchor.constraint(equalTo: totalNumLabel.trailingAnchor).isActive = true
         totalFive_eleLabel.centerYAnchor.constraint(equalTo: totalNumLabel.centerYAnchor).isActive = true
         
+        let bottomBUttonWidth: CGFloat = 100
         workOnButton.translatesAutoresizingMaskIntoConstraints = false
         workOnButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -twoOneWidth/2).isActive = true
         workOnButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
         workOnButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        workOnButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
-        
+        workOnButton.widthAnchor.constraint(equalToConstant: bottomBUttonWidth).isActive = true
+        // 流年按鈕
         waterMoveButton.translatesAutoresizingMaskIntoConstraints = false
-        waterMoveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        waterMoveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        waterMoveButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10).isActive = true
         waterMoveButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
         waterMoveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        waterMoveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        waterMoveButton.widthAnchor.constraint(equalToConstant: bottomBUttonWidth).isActive = true
         
         personalityButton.translatesAutoresizingMaskIntoConstraints = false
-        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: twoOneWidth/2).isActive = true
+//        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: twoOneWidth/2).isActive = true
+        personalityButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10).isActive = true
         personalityButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -15).isActive = true
         personalityButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        personalityButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        personalityButton.widthAnchor.constraint(equalToConstant: bottomBUttonWidth).isActive = true
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.centerXAnchor.constraint(equalTo: waterMoveButton.centerXAnchor).isActive = true
         saveButton.bottomAnchor.constraint(equalTo: waterMoveButton.topAnchor, constant: -15).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        saveButton.widthAnchor.constraint(equalToConstant: bottomBUttonWidth).isActive = true
     }
     private func outlook() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor

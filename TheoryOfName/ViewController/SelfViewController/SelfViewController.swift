@@ -2,10 +2,10 @@
 //  SelfViewController.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2021/12/10.
+//  Created by on 2021/12/10.
 //
 
-//自己的姓名資料
+//MARK: 自己的姓名資料
 
 import UIKit
 
@@ -21,6 +21,11 @@ class SelfViewController: UIViewController {
     var arrays = [NameJson]()
     var myName: SelfNameRecord?
     var newOrNotBool = false
+    
+    // 思想功能
+    private var mBrain: String = ""
+    // 行動功能
+    private var mAction: String = ""
     
     @IBOutlet weak var birthdateLabel: UILabel!
     @IBOutlet weak var movingNumLabel: UILabel!
@@ -56,14 +61,12 @@ class SelfViewController: UIViewController {
     @IBOutlet weak var workOnButton: UIButton!
     @IBOutlet weak var waterMoveButton: UIButton!
     @IBOutlet weak var personalityButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var changeNameButton: UIButton!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        sizeAndPosition()
         arrays = getData()
         
         DispatchQueue.main.async {
@@ -71,6 +74,13 @@ class SelfViewController: UIViewController {
             self.calcuate(nameDetails: name)
             self.outlook()
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeAndPosition()
+        workOnButton.isHidden = true
+        changeNameButton.isHidden = true
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -88,9 +98,17 @@ class SelfViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    @IBAction func saveButton(_ sender: Any) {
+    @IBAction func toBrainTabBarViewAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "BrainTabViewController") as? BrainTabBarViewController {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    @IBAction func changeNameAction(_ sender: Any) {
         
     }
+    
+    // 儲存姓名
     func saveMyName(name: SelfNameRecord) {
         let document = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
         let url = document.appendingPathComponent("MyName")
@@ -183,23 +201,51 @@ class SelfViewController: UIViewController {
         upBetweenLabel.text = upText
         if upText == "▽" || upText == "△" {
             upBetweenLabel.textColor = UIColor.red
+            switch upText {
+            case "△": mBrain = "\(fiveArrays[2])剋\(fiveArrays[1])"
+            case "▽": mBrain = "\(fiveArrays[1])剋\(fiveArrays[2])"
+            default: break
+            }
         }else if upText == "||" {
             upBetweenLabel.textColor = itemStyle.color.init().wordColor
+            mBrain = "\(fiveArrays[0])平宮"
         }else{
             upBetweenLabel.textColor = UIColor.black
+            switch upText {
+            case "↓": mBrain = "\(fiveArrays[1])生\(fiveArrays[2])"
+            case "↑": mBrain = "\(fiveArrays[2])生\(fiveArrays[1])"
+            default: break
+            }
         }
         downBetweenLabel.text = downText
         if downText == "▽" || downText == "△" {
             downBetweenLabel.textColor = UIColor.red
+            switch downText {
+            case "△": mAction = "\(fiveArrays[3])剋\(fiveArrays[2])"
+            case "▽": mAction = "\(fiveArrays[2])剋\(fiveArrays[3])"
+            default: break
+            }
         }else if downText == "||" {
             downBetweenLabel.textColor = itemStyle.color.init().wordColor
+            mAction = "\(fiveArrays[2])平宮"
         }else{
             downBetweenLabel.textColor = UIColor.black
+            switch downText {
+            case "↓": mAction = "\(fiveArrays[2])生\(fiveArrays[3])"
+            case "↑": mAction = "\(fiveArrays[3])生\(fiveArrays[2])"
+            default: break
+            }
         }
         guard let names = myName else { return }
         birthdateLabel.text = "出生日期：" + names.birthday
+        
+        //傳至全域
+        gBrainCharacter = mBrain
+        gActionCharacter = mAction
+        gTotalNameNum = totalNum
     }
-    func showBigOLabel(label: UILabel, show: String) {
+    // 無字時出現大Ｏ
+    private func showBigOLabel(label: UILabel, show: String) {
         label.text = show
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 60)
@@ -226,17 +272,18 @@ extension SelfViewController {
 //        let tenOneHeight = height/4
         let twoOneWidth = width/2
         
+        let topButtonHeight: CGFloat = 56
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         birthdateLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdateLabel.topAnchor.constraint(equalTo: backFontButton.bottomAnchor, constant: 15).isActive = true
@@ -331,30 +378,32 @@ extension SelfViewController {
         totalFive_eleLabel.centerYAnchor.constraint(equalTo: totalNumLabel.centerYAnchor).isActive = true
         
         //三個的基準
+        let bottomButtonWidth: CGFloat = 100
         workOnButton.translatesAutoresizingMaskIntoConstraints = false
         workOnButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -twoOneWidth/2).isActive = true
         workOnButton.topAnchor.constraint(equalTo: totalNumLabel.bottomAnchor, constant: height/66).isActive = true
         workOnButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        workOnButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        workOnButton.widthAnchor.constraint(equalToConstant: bottomButtonWidth).isActive = true
         
         waterMoveButton.translatesAutoresizingMaskIntoConstraints = false
-        waterMoveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        waterMoveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        waterMoveButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10).isActive = true
         waterMoveButton.centerYAnchor.constraint(equalTo: workOnButton.centerYAnchor).isActive = true
         waterMoveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        waterMoveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        waterMoveButton.widthAnchor.constraint(equalToConstant: bottomButtonWidth).isActive = true
         
         personalityButton.translatesAutoresizingMaskIntoConstraints = false
-        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: twoOneWidth/2).isActive = true
+//        personalityButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: twoOneWidth/2).isActive = true
+        personalityButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10).isActive = true
         personalityButton.centerYAnchor.constraint(equalTo: workOnButton.centerYAnchor).isActive = true
         personalityButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        personalityButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        personalityButton.widthAnchor.constraint(equalToConstant: bottomButtonWidth).isActive = true
 
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.centerXAnchor.constraint(equalTo: workOnButton.centerXAnchor).isActive = true
-        saveButton.topAnchor.constraint(equalTo: workOnButton.bottomAnchor, constant: height/45).isActive = true
-        saveButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -10).isActive = true
-//        saveButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        changeNameButton.translatesAutoresizingMaskIntoConstraints = false
+        changeNameButton.centerXAnchor.constraint(equalTo: workOnButton.centerXAnchor).isActive = true
+        changeNameButton.topAnchor.constraint(equalTo: workOnButton.bottomAnchor, constant: height/45).isActive = true
+        changeNameButton.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -10).isActive = true
+        changeNameButton.widthAnchor.constraint(equalToConstant: bottomButtonWidth).isActive = true
         
         marriageView.translatesAutoresizingMaskIntoConstraints = false
         marriageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
@@ -374,7 +423,9 @@ extension SelfViewController {
         marriageDownLabel.centerXAnchor.constraint(equalTo: marriageView.centerXAnchor).isActive = true
         marriageDownLabel.bottomAnchor.constraint(equalTo: marriageView.bottomAnchor, constant: -7).isActive = true
     }
-    func outlook() {
+    
+    // 元件外觀及顯示文字
+    private func outlook() {
         self.view.layer.backgroundColor = itemStyle.color.init().light_brown.cgColor
         style.topButton(backFontButton, title: "首頁")
         style.topButton(backButton, title: "返回")
@@ -393,10 +444,10 @@ extension SelfViewController {
         style.brownButton(workOnButton, title: "發動")
         style.brownButton(waterMoveButton, title: "流年")
         style.brownButton(personalityButton, title: "性格")
-        saveButton.layer.borderColor = itemStyle.color.init().dark_green.cgColor
-        saveButton.layer.borderWidth = 2
-        saveButton.setTitle("改名字", for: .normal)
-        saveButton.setTitleColor(itemStyle.color.init().dark_green, for: .normal)
+        changeNameButton.layer.borderColor = itemStyle.color.init().dark_green.cgColor
+        changeNameButton.layer.borderWidth = 2
+        changeNameButton.setTitle("改名字", for: .normal)
+        changeNameButton.setTitleColor(itemStyle.color.init().dark_green, for: .normal)
         
         marriageUpLabel.textColor = itemStyle.color.init().light_brown
         marriageBetweenLabel.textColor = itemStyle.color.init().light_brown
@@ -410,7 +461,6 @@ extension SelfViewController {
         
         guard let name = myName else { return }
         let marriageArrays = marriageNumCalculate(diseaseNum: name.num.diseaseNum, friendNum: name.num.friendsNum)
-//        print(marriageArrays)
         marriageUpLabel.text = marriageArrays[0]
         marriageBetweenLabel.text = marriageArrays[1]
         marriageDownLabel.text = marriageArrays[2]

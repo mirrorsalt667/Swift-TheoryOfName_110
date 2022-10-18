@@ -5,7 +5,8 @@
 //  Created on 2021/11/7.
 //
 //  資料儲存，非userdefault 方式
-//  首頁
+
+// MARK: 首頁
 
 import UIKit
 
@@ -23,9 +24,8 @@ struct CharactersContent: Decodable {
     let postscript: String
 }
 
-class FirstPageViewController: UIViewController {
+final class FirstPageViewController: UIViewController {
 
-    
     private let style = itemStyle()
     
     private var myName: SelfNameRecord?
@@ -46,14 +46,8 @@ class FirstPageViewController: UIViewController {
         
         sizeAndPosition()
         outlookAndShow()
-//        let url = Bundle.main.url(forResource: "AgainstCharacters", withExtension: "plist")!
-//        print(url.path)
-//        if let data = try? Data(contentsOf: url),
-//           let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
-//            print(character[0].postscript)
-//        }
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         readMyName()
     }

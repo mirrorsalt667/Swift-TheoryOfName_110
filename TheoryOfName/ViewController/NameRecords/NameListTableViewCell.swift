@@ -2,7 +2,7 @@
 //  NameListTableViewCell.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2021/12/10.
+//  Created by on 2021/12/10.
 //
 
 import UIKit

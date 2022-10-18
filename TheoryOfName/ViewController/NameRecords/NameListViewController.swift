@@ -2,14 +2,14 @@
 //  NameListViewController.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2021/12/10.
+//  Created by on 2021/12/10.
 //
 
-//儲存的姓名資料
+//MARK: 儲存的姓名資料
 
 import UIKit
 
-class NameListViewController: UIViewController {
+final class NameListViewController: UIViewController {
 
     let style = itemStyle()
     var nameListArrays = [NameRecords]()
@@ -55,23 +55,25 @@ class NameListViewController: UIViewController {
         }
     }
     
-    func codingLayout() {
+    private func codingLayout() {
         
 //        let width = self.view.frame.width
 //        let height = self.view.frame.height
         let margins = nameListTableView.superview!.layoutMarginsGuide
         
+        let topButtonHeight: CGFloat = 56
+        
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         nameListTableView.translatesAutoresizingMaskIntoConstraints = false
         nameListTableView.topAnchor.constraint(equalTo: backFontButton.bottomAnchor, constant: 30).isActive = true

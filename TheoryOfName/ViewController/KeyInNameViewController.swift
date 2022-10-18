@@ -5,7 +5,7 @@
 //  Create on 2021/11/7.
 //
 
-//輸入名字的頁面
+//MARK: 輸入名字的頁面
 
 import UIKit
 
@@ -102,17 +102,19 @@ class KeyInNameViewController: UIViewController {
         let fiveOneHeight = height/7
 //        let sevenOneWidth = width/7
         
+        let topButtonHeight: CGFloat = 56
+        
         backFontButton.translatesAutoresizingMaskIntoConstraints = false
-        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backFontButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backFontButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        backFontButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backFontButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backFontButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backFontButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
+        backButton.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        backButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: topButtonHeight).isActive = true
         
 //        birthdatePicker.preferredDatePickerStyle = .inline
         birthdatePicker.translatesAutoresizingMaskIntoConstraints = false

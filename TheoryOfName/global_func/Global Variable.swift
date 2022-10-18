@@ -2,7 +2,7 @@
 //  Global Variable.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2022/6/21.
+//  Created by on 2022/6/21.
 //
 
 import Foundation
@@ -10,16 +10,16 @@ import Foundation
 
 var gBrainCharacter: String = "" {
     didSet {
-        print(gBrainCharacter)
+        print("思想功能資料初始：", gBrainCharacter)
     }
 }
 var gActionCharacter: String = ""{
     didSet {
-        print(gActionCharacter)
+        print("行動功能資料初始：", gActionCharacter)
     }
 }
-var gAgeNum: Int = 0 {
+var gTotalNameNum: Int = 0 {
     didSet {
-        print(gAgeNum)
+        print("姓名總筆畫初始：", gTotalNameNum)
     }
 }

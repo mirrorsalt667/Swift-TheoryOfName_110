@@ -2,12 +2,14 @@
 //  ActionPartViewController.swift
 //  TheoryOfName
 //
-//  Created by 黃肇祺 on 2022/6/25.
+//  Created by on 2022/6/25.
 //
+
+// MARK: 行動功能頁面
 
 import UIKit
 
-class ActionPartViewController: UIViewController {
+final class ActionPartViewController: UIViewController {
 
     //MARK: init
     private let tStyle = itemStyle()
@@ -19,6 +21,9 @@ class ActionPartViewController: UIViewController {
     
     
     //MARK: Outlet Component
+    @IBOutlet var backFontButton: UIButton!
+    @IBOutlet var backButton: UIButton!
+    
     @IBOutlet weak var actScrollView: UIScrollView!
     @IBOutlet weak var actStackView: UIStackView!
     
@@ -50,9 +55,9 @@ class ActionPartViewController: UIViewController {
     //MARK: View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setOutlookStyle()
         mActionTitle = gActionCharacter
-        mAge = gAgeNum
+        mAge = gTotalNameNum
         
         //取得資料
         mActionContent = getCharacterData(title: gActionCharacter)
@@ -74,6 +79,11 @@ class ActionPartViewController: UIViewController {
     
     
     //MARK: Other Function
+    private func setOutlookStyle() {
+        tStyle.topButton(backFontButton, title: "首頁")
+        tStyle.topButton(backButton, title: "返回")
+    }
+    
     //設置滑動範圍
     private func setScrollViewFrame(scroll: UIScrollView, stack: UIStackView) {
         
@@ -165,7 +175,6 @@ class ActionPartViewController: UIViewController {
     
     //取得個性資料
     private func getCharacterData(title: String) -> CharactersContent? {
-        print("準備取得資料")
         var url = URL(string: "")
         if title.contains(where: { word in
             word == "生"
@@ -189,7 +198,6 @@ class ActionPartViewController: UIViewController {
         if url != nil {
             if let data = try? Data(contentsOf: url!),
                let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
-                print("取得資料")
                 let count = character.count
                 for k in 0..<count {
                     if title == character[k].title {

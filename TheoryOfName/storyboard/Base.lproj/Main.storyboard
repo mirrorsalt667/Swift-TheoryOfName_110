@@ -949,11 +949,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-TK-gVy">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ce3-TK-gVy">
                                                 <rect key="frame" x="0.0" y="33" width="359" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUE-Z7-fxL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                                         <connections>
@@ -961,7 +961,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upT-DV-TAg">
-                                                        <rect key="frame" x="179.66666666666663" y="0.0" width="179.33333333333337" height="31"/>
+                                                        <rect key="frame" x="189.66666666666663" y="0.0" width="169.33333333333337" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                                         <connections>
@@ -1188,6 +1188,8 @@
                         <outlet property="activenessTitleLabel" destination="rTg-RM-7H1" id="ksU-45-Mco"/>
                         <outlet property="attitudeLabel" destination="wxV-lM-AWO" id="h7o-QZ-JGl"/>
                         <outlet property="attitudeTitleLabel" destination="KiK-za-HNz" id="E9Q-Iu-hVM"/>
+                        <outlet property="backButton" destination="upT-DV-TAg" id="AFO-Gp-Rkm"/>
+                        <outlet property="backFontButton" destination="LUE-Z7-fxL" id="Kmp-bH-M8y"/>
                         <outlet property="bigScrollView" destination="hp3-5X-3lb" id="AWV-su-55Z"/>
                         <outlet property="bigStackView" destination="mrA-9P-6Dp" id="ldQ-3Y-H7Z"/>
                         <outlet property="bornLuckyLabel" destination="UFA-eF-vCo" id="776-QX-s4D"/>
@@ -1374,6 +1376,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="性格"/>
+                                <connections>
+                                    <action selector="toBrainTabBarViewAction:" destination="Ytp-JP-9pF" eventType="touchUpInside" id="lP2-IH-8jR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="△▲▽▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBU-Xl-6XY">
                                 <rect key="frame" x="209" y="329" width="60" height="24"/>
@@ -1415,12 +1420,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a83-wV-uQo">
-                                <rect key="frame" x="93" y="661" width="53" height="31"/>
+                                <rect key="frame" x="86" y="661" width="67" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="歲值"/>
+                                <buttonConfiguration key="configuration" style="plain" title="改名字"/>
                                 <connections>
-                                    <action selector="saveButton:" destination="Ytp-JP-9pF" eventType="touchUpInside" id="RFo-19-aUe"/>
+                                    <action selector="changeNameAction:" destination="Ytp-JP-9pF" eventType="touchUpInside" id="b0F-3R-zhj"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJt-0r-WNE">
@@ -1460,6 +1465,7 @@
                         <outlet property="backButton" destination="eMx-Nk-Tvv" id="eEp-7u-vmL"/>
                         <outlet property="backFontButton" destination="iyw-qS-ipv" id="LbG-A1-W4x"/>
                         <outlet property="birthdateLabel" destination="w8W-sD-s4P" id="VQd-2T-ZHd"/>
+                        <outlet property="changeNameButton" destination="a83-wV-uQo" id="RG3-Dg-V81"/>
                         <outlet property="diseaseFive_eleLabel" destination="Nfn-z6-NqP" id="xVw-4y-jww"/>
                         <outlet property="diseaseNumLabel" destination="Y5N-9W-Ics" id="pF8-pe-EEG"/>
                         <outlet property="downBetweenLabel" destination="CBU-Xl-6XY" id="dwd-kd-NAk"/>
@@ -1478,7 +1484,6 @@
                         <outlet property="parentsFive_eleLabel" destination="0U5-P8-iP5" id="FS0-zh-o3P"/>
                         <outlet property="parentsNumLabel" destination="qfc-y5-lww" id="baK-pc-cn0"/>
                         <outlet property="personalityButton" destination="TTo-HQ-KbM" id="18v-jm-xZ8"/>
-                        <outlet property="saveButton" destination="a83-wV-uQo" id="cCX-EP-6yC"/>
                         <outlet property="secNameLabel" destination="Cb4-l4-wFQ" id="blV-z5-1Mt"/>
                         <outlet property="secNameNumLabel" destination="9Mt-wP-X83" id="any-1Z-uwU"/>
                         <outlet property="thirdNameLabel" destination="BDD-uy-8em" id="cvq-ge-kPj"/>
@@ -1530,11 +1535,11 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="uPz-c7-cYl">
                                         <rect key="frame" x="8" y="0.0" width="359" height="493"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQW-g8-ZbG">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NQW-g8-ZbG">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-Qv-RhF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="31"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                                         <connections>
@@ -1542,7 +1547,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-2h-0eK">
-                                                        <rect key="frame" x="179.66666666666663" y="0.0" width="179.33333333333337" height="31"/>
+                                                        <rect key="frame" x="189.66666666666663" y="0.0" width="169.33333333333337" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                                         <connections>
@@ -1774,6 +1779,8 @@
                         <outlet property="activenessTitleLabel" destination="9vJ-MG-Dfd" id="sl2-Pn-SVj"/>
                         <outlet property="attitudeLabel" destination="P3Y-sx-upE" id="nAb-hz-vEP"/>
                         <outlet property="attitudeTitleLabel" destination="ouD-q9-Rnl" id="LUh-zX-Qyg"/>
+                        <outlet property="backButton" destination="Dds-2h-0eK" id="Bxu-Oz-Qhg"/>
+                        <outlet property="backFontButton" destination="g9h-Qv-RhF" id="AQC-05-2tJ"/>
                         <outlet property="bornLuckyLabel" destination="Lkd-og-LNz" id="ggS-HN-kzc"/>
                         <outlet property="bornLuckyTitleLabel" destination="fop-1b-Qi7" id="PC3-8s-Bw1"/>
                         <outlet property="careerLabel" destination="vL9-oi-AaD" id="P6t-hp-Sy5"/>
