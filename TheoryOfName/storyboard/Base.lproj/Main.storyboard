@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPH-IA-tNw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPH-IA-tNw">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -261,16 +261,19 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlc-Rc-v2m">
-                                <rect key="frame" x="0.0" y="58" width="67" height="31"/>
+                                <rect key="frame" x="7" y="58" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="首頁"/>
+                                <connections>
+                                    <segue destination="EnM-RH-srP" kind="unwind" unwindAction="unwindToFirstPage:" id="9zR-mW-fbW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58M-S5-8rA">
-                                <rect key="frame" x="308" y="44" width="67" height="31"/>
+                                <rect key="frame" x="315" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                 <connections>
                                     <action selector="backButton:" destination="NMo-ei-def" eventType="touchUpInside" id="pp2-kD-s3v"/>
                                 </connections>
@@ -286,6 +289,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ukU-6c-BkJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="EnM-RH-srP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-663.20000000000005" y="761.82266009852219"/>
         </scene>
@@ -477,19 +481,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kw6-Yj-pbJ">
-                                <rect key="frame" x="0.0" y="44" width="67" height="31"/>
+                                <rect key="frame" x="7" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                 <connections>
                                     <segue destination="pfI-Cj-vWu" kind="unwind" unwindAction="unwindToFirstPage:" id="Lnx-ci-gMX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8db-dn-86r">
-                                <rect key="frame" x="308" y="44" width="67" height="31"/>
+                                <rect key="frame" x="315" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                 <connections>
                                     <action selector="backButton:" destination="Zaq-BE-TqB" eventType="touchUpInside" id="3t1-J5-jfj"/>
                                 </connections>
@@ -564,19 +568,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izY-6f-OiS">
-                                <rect key="frame" x="0.0" y="44" width="67" height="31"/>
+                                <rect key="frame" x="7" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                 <connections>
                                     <segue destination="NAf-Oh-U22" kind="unwind" unwindAction="unwindToFirstPage:" id="VES-4O-TJT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuY-ba-LQx">
-                                <rect key="frame" x="308" y="42" width="67" height="31"/>
+                                <rect key="frame" x="315" y="42" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                 <connections>
                                     <action selector="backButton:" destination="xit-Cf-ptg" eventType="touchUpInside" id="1uk-dx-dzg"/>
                                 </connections>
@@ -891,19 +895,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XcB-a1-b6j">
-                                <rect key="frame" x="0.0" y="44" width="67" height="31"/>
+                                <rect key="frame" x="7" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                 <connections>
                                     <segue destination="bIC-8H-JLY" kind="unwind" unwindAction="unwindToFirstPage:" id="paA-PG-NJm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvQ-FA-ZXJ">
-                                <rect key="frame" x="308" y="44" width="67" height="31"/>
+                                <rect key="frame" x="315" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="返回"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSU-Jg-KZu">
                                 <rect key="frame" x="93" y="661" width="53" height="31"/>
@@ -930,9 +934,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hp3-5X-3lb">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hp3-5X-3lb">
                                 <rect key="frame" x="0.0" y="44" width="375" height="685"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="mrA-9P-6Dp">
                                         <rect key="frame" x="8" y="0.0" width="359" height="526"/>
@@ -952,12 +955,15 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUE-Z7-fxL">
                                                         <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="首頁"/>
+                                                        <connections>
+                                                            <segue destination="CNT-Vy-sMx" kind="unwind" unwindAction="unwindToFirstPage:" id="Rab-QE-1HJ"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upT-DV-TAg">
                                                         <rect key="frame" x="179.66666666666663" y="0.0" width="179.33333333333337" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                                         <connections>
                                                             <action selector="closeBtnAction:" destination="61N-az-qnk" eventType="touchUpInside" id="y0O-hN-PSl"/>
                                                         </connections>
@@ -1169,6 +1175,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WcM-bC-hU5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="hp3-5X-3lb" secondAttribute="bottom" id="LJB-25-a2z"/>
+                            <constraint firstItem="hp3-5X-3lb" firstAttribute="trailing" secondItem="WcM-bC-hU5" secondAttribute="trailing" id="TTZ-nc-7OZ"/>
+                            <constraint firstItem="hp3-5X-3lb" firstAttribute="leading" secondItem="WcM-bC-hU5" secondAttribute="leading" id="eZA-eI-PO6"/>
+                            <constraint firstItem="hp3-5X-3lb" firstAttribute="top" secondItem="WcM-bC-hU5" secondAttribute="top" constant="10" id="qoV-la-leP"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="思想功能" image="brain" catalog="system" id="dPY-Be-c3H"/>
                     <connections>
@@ -1197,6 +1209,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22H-cF-goa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="CNT-Vy-sMx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1945" y="458"/>
         </scene>
@@ -1384,19 +1397,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyw-qS-ipv">
-                                <rect key="frame" x="0.0" y="44" width="67" height="31"/>
+                                <rect key="frame" x="7" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="首頁"/>
                                 <connections>
                                     <segue destination="pP1-T8-327" kind="unwind" unwindAction="unwindToFirstPage:" id="o0p-CT-VSI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMx-Nk-Tvv">
-                                <rect key="frame" x="308" y="44" width="67" height="31"/>
+                                <rect key="frame" x="315" y="44" width="53" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                 <connections>
                                     <action selector="backButton:" destination="Ytp-JP-9pF" eventType="touchUpInside" id="Jbg-LG-CRB"/>
                                 </connections>
@@ -1511,9 +1524,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfW-Mt-ZgA">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfW-Mt-ZgA">
                                 <rect key="frame" x="0.0" y="44" width="375" height="685"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="uPz-c7-cYl">
                                         <rect key="frame" x="8" y="0.0" width="359" height="493"/>
@@ -1524,12 +1536,15 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9h-Qv-RhF">
                                                         <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="首頁"/>
+                                                        <connections>
+                                                            <segue destination="1gK-cw-81J" kind="unwind" unwindAction="unwindToFirstPage:" id="i0f-Aj-23A"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-2h-0eK">
                                                         <rect key="frame" x="179.66666666666663" y="0.0" width="179.33333333333337" height="31"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="返回"/>
                                                         <connections>
                                                             <action selector="closeBtnAction:" destination="bic-1E-rCo" eventType="touchUpInside" id="IJ2-vp-k1o"/>
                                                         </connections>
@@ -1543,7 +1558,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-tp-YXN">
-                                                <rect key="frame" x="0.0" y="93.333333333333343" width="359" height="21.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="93.333333333333329" width="359" height="21.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1741,6 +1756,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bUC-7u-AKv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mfW-Mt-ZgA" firstAttribute="leading" secondItem="bUC-7u-AKv" secondAttribute="leading" id="CWn-77-vi3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="mfW-Mt-ZgA" secondAttribute="bottom" constant="5" id="Jo7-45-Rue"/>
+                            <constraint firstItem="mfW-Mt-ZgA" firstAttribute="top" secondItem="bUC-7u-AKv" secondAttribute="top" constant="10" id="Q4n-I9-0TX"/>
+                            <constraint firstItem="mfW-Mt-ZgA" firstAttribute="trailing" secondItem="bUC-7u-AKv" secondAttribute="trailing" id="b0N-ID-NxX"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="行動功能" image="suit.heart" catalog="system" id="vqk-zJ-u7T"/>
                     <navigationItem key="navigationItem" id="bY0-1Z-lTH"/>
@@ -1770,6 +1791,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4q9-1o-G3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1gK-cw-81J" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1945" y="1108"/>
         </scene>

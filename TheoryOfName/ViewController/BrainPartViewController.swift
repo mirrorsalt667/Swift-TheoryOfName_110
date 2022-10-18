@@ -10,12 +10,12 @@
 import UIKit
 
 class BrainPartViewController: UIViewController {
-
+    
     //MARK: init
     private let tStyle = itemStyle()
     
     
-//    var mIsBrain: Bool = true
+    //    var mIsBrain: Bool = true
     private var mBrainTitle: String = ""
     private var mAge: Int = 0
     private var mBrainContent: CharactersContent?
@@ -39,7 +39,7 @@ class BrainPartViewController: UIViewController {
     @IBOutlet weak var bornLuckyTitleLabel: UILabel!
     @IBOutlet weak var careerTitleLabel: UILabel!
     @IBOutlet weak var lifeOutlookTitleLabel: UILabel!
-//    @IBOutlet weak var postscriptTitleLabel: UILabel!
+    //    @IBOutlet weak var postscriptTitleLabel: UILabel!
     
     @IBOutlet weak var characterLabel: UILabel!
     @IBOutlet weak var activenessLabel: UILabel!
@@ -50,26 +50,27 @@ class BrainPartViewController: UIViewController {
     @IBOutlet weak var bornLuckyLabel: UILabel!
     @IBOutlet weak var careerLabel: UILabel!
     @IBOutlet weak var lifeOutlookLabel: UILabel!
-//    @IBOutlet weak var postscriptLabel: UILabel!
+    //    @IBOutlet weak var postscriptLabel: UILabel!
     
     
     //MARK: View Life Circle
     override func viewDidLoad() {
         super.viewDidLoad()
         setOutlookStyle()
-        setScrollViewFrame(scroll: bigScrollView, stack: bigStackView)
         mBrainTitle = gBrainCharacter
         mActionTitle = gActionCharacter
         mAge = gAgeNum
         
         //取得資料
         mBrainContent = getCharacterData(title: gBrainCharacter)
-        
-        
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setScrollViewFrame(scroll: bigScrollView, stack: bigStackView)
         setLabelWords(isBrain: true)
-        
     }
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         print("頭腦功能->", mBrainTitle)
         print("行動功能->", mActionTitle)
     }
@@ -116,7 +117,53 @@ class BrainPartViewController: UIViewController {
             if mBrainTitle.contains(where: { word in
                 word == "平"
             })  {
-                
+                if let brainContent = mBrainContent {
+                    var string = ""
+                    if brainContent.character != "" {
+                        string += brainContent.character + "\n"
+                    }
+                    if brainContent.activeness != "" {
+                        string += brainContent.activeness + "\n"
+                    }
+                    if brainContent.handleAffairs != "" {
+                        string += brainContent.handleAffairs + "\n"
+                    }
+                    if brainContent.attitude != "" {
+                        string += brainContent.attitude + "\n"
+                    }
+                    if brainContent.goodPoint != "" {
+                        string += brainContent.goodPoint + "\n"
+                    }
+                    if brainContent.weekPoint != "" {
+                        string += brainContent.weekPoint + "\n"
+                    }
+                    if brainContent.bornLucky != "" {
+                        string += brainContent.bornLucky + "\n"
+                    }
+                    if brainContent.career != "" {
+                        string += brainContent.career + "\n"
+                    }
+                    if brainContent.lifeOutlook != "" {
+                        string += brainContent.lifeOutlook + "\n"
+                    }
+                    characterLabel.text = string
+                    activenessTitleLabel.isHidden = true
+                    handleAffairsTitleLabel.isHidden = true
+                    attitudeTitleLabel.isHidden = true
+                    goodPointTitleLabel.isHidden = true
+                    weekPointTitleLabel.isHidden = true
+                    bornLuckyTitleLabel.isHidden = true
+                    careerTitleLabel.isHidden = true
+                    lifeOutlookTitleLabel.isHidden = true
+                    activenessLabel.isHidden = true
+                    handleAffairsLabel.isHidden = true
+                    attitudeLabel.isHidden = true
+                    goodPointLabel.isHidden = true
+                    weekPointLabel.isHidden = true
+                    bornLuckyLabel.isHidden = true
+                    careerLabel.isHidden = true
+                    lifeOutlookLabel.isHidden = true
+                }
             }else{
                 if let brainContent = mBrainContent {
                     characterLabel.text = brainContent.character
@@ -188,19 +235,37 @@ class BrainPartViewController: UIViewController {
         }else if title.contains(where: { word in
             word == "平"
         }) {
+            print("平宮觸發 => start")
             if let insideUrl = Bundle.main.url(forResource: "EqualCharacters", withExtension: "plist") {
+                print("平宮觸發 => get url")
                 url = insideUrl
             }
         }
+        // 取得url後，解析資料
         if url != nil {
-            if let data = try? Data(contentsOf: url!),
-               let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data) {
-                let count = character.count
-                for k in 0..<count {
-                    if title == character[k].title {
-                        return character[k]
+            if let data = try? Data(contentsOf: url!) {
+                
+                do {
+                    let character = try PropertyListDecoder().decode([CharactersContent].self, from: data)
+                    let count = character.count
+                    for k in 0..<count {
+                        if title == character[k].title {
+                            return character[k]
+                        }
                     }
+                } catch {
+                    print("解析資料錯誤", error)
                 }
+                //                let character = try? PropertyListDecoder().decode([CharactersContent].self, from: data)
+                //                let count = character.count
+                //                for k in 0..<count {
+                //                    if title == character[k].title {
+                //                        return character[k]
+                //                    }
+                //                }
+            } else {
+                print("解析資料失敗")
+                return nil
             }
         }
         return nil

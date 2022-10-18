@@ -56,7 +56,10 @@ class ActionPartViewController: UIViewController {
         
         //取得資料
         mActionContent = getCharacterData(title: gActionCharacter)
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setLabelWords()
         setScrollViewFrame(scroll: actScrollView, stack: actStackView)
     }
@@ -98,7 +101,53 @@ class ActionPartViewController: UIViewController {
         if mActionTitle.contains(where: { word in
             word == "平"
         })  {
-
+            if let content = mActionContent {
+                var string = ""
+                if content.character != "" {
+                    string += content.character + "\n"
+                }
+                if content.activeness != "" {
+                    string += content.activeness + "\n"
+                }
+                if content.handleAffairs != "" {
+                    string += content.handleAffairs + "\n"
+                }
+                if content.attitude != "" {
+                    string += content.attitude + "\n"
+                }
+                if content.goodPoint != "" {
+                    string += content.goodPoint + "\n"
+                }
+                if content.weekPoint != "" {
+                    string += content.weekPoint + "\n"
+                }
+                if content.bornLucky != "" {
+                    string += content.bornLucky + "\n"
+                }
+                if content.career != "" {
+                    string += content.career + "\n"
+                }
+                if content.lifeOutlook != "" {
+                    string += content.lifeOutlook + "\n"
+                }
+                characterLabel.text = string
+                activenessTitleLabel.isHidden = true
+                handleAffairsTitleLabel.isHidden = true
+                attitudeTitleLabel.isHidden = true
+                goodPointTitleLabel.isHidden = true
+                weekPointTitleLabel.isHidden = true
+                bornLuckyTitleLabel.isHidden = true
+                careerTitleLabel.isHidden = true
+                lifeOutlookTitleLabel.isHidden = true
+                activenessLabel.isHidden = true
+                handleAffairsLabel.isHidden = true
+                attitudeLabel.isHidden = true
+                goodPointLabel.isHidden = true
+                weekPointLabel.isHidden = true
+                bornLuckyLabel.isHidden = true
+                careerLabel.isHidden = true
+                lifeOutlookLabel.isHidden = true
+            }
         }else{
             if let content = mActionContent {
                 characterLabel.text = content.character
